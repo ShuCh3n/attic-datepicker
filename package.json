@@ -1,0 +1,32 @@
+{
+    "name": "Attic Datpicker",
+    "version": "1.0.0",
+    "description": "Beautiful single and range date picker that is built with Tailwind CSS and Vue 3 using day.js",
+    "keywords": [
+        "attic-datepicker",
+        "range-datepicker",
+        "vue-datepicker",
+        "vue-daterangepicker",
+        "vue-daterange-picker",
+        "tailwind-datepicker",
+        "tailwind-daterange-picker"
+    ],
+    "author": {
+        "name": "shuch3n",
+        "email": "shuch3n",
+        "url": "https://github.com/shuch3n"
+    },
+    "license": "MIT",
+    "private": false,
+    "homepage": "https://atticdatepicker.com",
+    "devDependencies": {
+        "dayjs": "^1.11.5",
+        "tailwindcss": "^3.1.8",
+        "vue": "^3.2.37"
+    },
+    "peerDependencies": {
+        "dayjs": "^1.11.5",
+        "tailwindcss": "^3.1.8",
+        "vue": "^3.2.37"
+    }
+}
