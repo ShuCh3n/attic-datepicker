@@ -1,6 +1,6 @@
 {
-    "name": "Attic Datpicker",
-    "version": "1.0.0",
+    "name": "attic-datepicker",
+    "version": "0.0.2",
     "description": "Beautiful single and range date picker that is built with Tailwind CSS and Vue 3 using day.js",
     "keywords": [
         "attic-datepicker",
