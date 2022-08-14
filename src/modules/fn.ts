@@ -16,3 +16,15 @@ export const useCurrentDate = (date: any) => {
         (v, k) => date.date(k + 1)
     );
 }
+
+export const useDirective = (binding: any) => {
+    const { instance } = binding;
+
+    document.body.addEventListener('click', $event => {
+        if (instance.$el.contains($event.target)) {
+            return (instance.showCalendar = true);
+        }
+
+        return (instance.showCalendar = false)
+    });
+}
