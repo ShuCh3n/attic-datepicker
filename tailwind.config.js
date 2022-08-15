@@ -13,6 +13,8 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                'attic-primary': colors.emerald,
+                'attic-secondary': colors.gray
             },
             fontFamily: {
                 sans: ['Inter', ...fontFamily.sans]
