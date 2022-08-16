@@ -6,7 +6,7 @@
             :clear="clearDate"
         >
             <div
-                class="relative block w-full pl-3 pr-12 py-2.5 rounded-lg overflow-hidden text-sm text-litepie-secondary-700 placeholder-litepie-secondary-400 transition-colors bg-white border border-litepie-secondary-300 focus:border-litepie-primary-300 focus:ring focus:ring-litepie-primary-500 focus:ring-opacity-10 focus:outline-none dark:bg-litepie-secondary-800 dark:border-litepie-secondary-700 dark:text-litepie-secondary-100 dark:placeholder-litepie-secondary-500 dark:focus:border-litepie-primary-500 dark:focus:ring-opacity-20"
+                class="relative block w-full pl-3 pr-12 py-2.5 rounded-lg overflow-hidden text-sm transition-colors bg-white border focus:ring focus:outline-none dark:focus:ring-opacity-20"
                  v-bind="$attrs">
                 <span v-if="atticDatepicker.selectedDate.value">{{ atticDatepicker.selectedDate.value.format(format) }}</span>
             </div>
@@ -25,7 +25,7 @@
                 </button>
 
                 <div class="flex space-x-12 w-full">
-                    <Calendar v-for="x in parseInt(showXMonths)" :date="calendarView.date.value.add((x - 1), 'month')" />
+                    <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
                 </div>
 
                 <button @click="calendarView.addMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full">
@@ -40,7 +40,7 @@
 
 <script>
 import { ref, computed, provide, watch } from 'vue'
-import { useDirective } from "./modules/fn"
+import { useDirective } from "./lib/fn"
 
 import dayjs from 'dayjs'
 import localeData from 'dayjs/plugin/localeData'
@@ -51,10 +51,10 @@ dayjs.extend(localeData)
 dayjs.extend(weekday)
 dayjs.extend(isBetween)
 
-import Calendar from './components/Calendar'
-import YearsCalendar from "./components/YearsCalendar";
-import MonthsCalendar from "./components/MonthsCalendar";
-import DatesCalendar from './components/DatesCalendar'
+import Calendar from './components/Calendar.vue'
+import YearsCalendar from "./components/YearsCalendar.vue";
+import MonthsCalendar from "./components/MonthsCalendar.vue";
+import DatesCalendar from './components/DatesCalendar.vue'
 
 import Datepicker from './classes/Datepicker'
 
@@ -90,11 +90,6 @@ export default {
         const showCalendar = ref(false)
         const atticDatepicker = new Datepicker('2022-05-01', null, (props.isRange === 'true'), (props.autoApply === 'true'))
 
-        provide('atticDatepicker', atticDatepicker)
-        provide('showCalendar', showCalendar)
-        provide('calendarView', calendarView)
-        provide('showXMonths', props.showXMonths)
-
         const calendarView = computed(() => {
             const date = ref((props.date)? dayjs(props.date) : dayjs())
 
@@ -122,6 +117,11 @@ export default {
             showCalendar.value = false
         }
 
+        provide('atticDatepicker', atticDatepicker)
+        provide('showCalendar', showCalendar)
+        provide('calendarView', calendarView)
+        provide('showXMonths', props.showXMonths)
+
         return {
             clearDate,
             atticDatepicker,
@@ -137,7 +137,7 @@ export default {
     .attic-datepicker-calendar::before {
         --attic-datepicker: 0px;
         content: '';
-        @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1] dark:bg-attic-secondary-800 dark:border-attic-secondary-700;
+        @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1];
         transform: translate(50%, -50%) rotate(-45deg);
 
         clip-path: polygon(

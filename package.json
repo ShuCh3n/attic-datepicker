@@ -1,54 +1,51 @@
 {
-    "name": "attic-datepicker",
-    "version": "0.0.3",
-    "description": "Beautiful single and range date picker that is built with Tailwind CSS and Vue 3 using day.js",
-    "keywords": [
-        "attic-datepicker",
-        "range-datepicker",
-        "vue-datepicker",
-        "vue-daterangepicker",
-        "vue-daterange-picker",
-        "tailwind-datepicker",
-        "tailwind-daterange-picker"
-    ],
-    "author": {
-        "name": "shuch3n",
-        "email": "shuch3n",
-        "url": "https://github.com/shuch3n"
-    },
-    "license": "MIT",
-    "private": false,
-    "homepage": "https://atticdatepicker.com",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/ShuCh3n/attic-datepicker"
-    },
-    "bugs": {
-        "url": "https://github.com/ShuCh3n/attic-datepicker/issues",
-        "email": "info@ediasoft.com"
-    },
-    "sideEffects": false,
-    "scripts": {
-        "serve": "node exec.js && vue-cli-service serve",
-        "build": "cross-env NODE_ENV=production",
-        "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
-        "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
-        "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-        "build:doc": "vue-cli-service build && npm run tw",
-        "tw": "npx tailwind build ./docs/src/styles.css -o ./docs/dist/css/prims.css && cp -r ./docs/public/img ./docs/dist/img && cp ./docs/public/favicon.ico ./docs/dist",
-        "lint": "eslint --fix",
-        "locale": "rm -rf ./dist/locale && cp -r ./src/locale ./dist/locale"
-    },
-    "devDependencies": {
-        "@vue/cli-service": "^5.0.8",
-        "cross-env": "^7.0.3",
-        "dayjs": "^1.11.5",
-        "tailwindcss": "^3.1.8",
-        "vue": "^3.2.37"
-    },
-    "peerDependencies": {
-        "dayjs": "^1.11.5",
-        "tailwindcss": "^3.1.8",
-        "vue": "^3.2.37"
-    }
+  "name": "attic-datepicker",
+  "private": false,
+  "version": "0.0.4",
+  "description": "Beautiful single and range date picker that is built with Tailwind CSS and Vue 3 using day.js",
+  "keywords": [
+    "attic-datepicker",
+    "range-datepicker",
+    "vue-datepicker",
+    "vue-daterangepicker",
+    "vue-daterange-picker",
+    "tailwind-datepicker",
+    "tailwind-daterange-picker"
+  ],
+  "author": {
+    "name": "shuch3n",
+    "email": "shuch3n",
+    "url": "https://github.com/shuch3n"
+  },
+  "license": "MIT",
+  "homepage": "https://atticdatepicker.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShuCh3n/attic-datepicker"
+  },
+  "bugs": {
+    "url": "https://github.com/ShuCh3n/attic-datepicker/issues",
+    "email": "info@ediasoft.com"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.3",
+    "autoprefixer": "^10.4.8",
+    "dayjs": "^1.11.5",
+    "postcss": "^8.4.16",
+    "tailwindcss": "^3.1.8",
+    "typescript": "^4.6.4",
+    "vite": "^3.0.7",
+    "vue": "^3.2.37",
+    "vue-tsc": "^0.39.5"
+  },
+  "peerDependencies": {
+    "dayjs": "^1.11.5",
+    "tailwindcss": "^3.1.8",
+    "vue": "^3.2.37"
+  }
 }

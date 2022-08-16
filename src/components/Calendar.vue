@@ -8,11 +8,11 @@
 
 <script>
 import { ref, watch, provide, computed } from "vue";
-import { useCalendar } from "../modules/calendar"
+import { useCalendar } from "../lib/calendar"
 
-import YearsCalendar from "./YearsCalendar"
-import MonthsCalendar from "./MonthsCalendar"
-import DatesCalendar from "./DatesCalendar"
+import YearsCalendar from "./YearsCalendar.vue"
+import MonthsCalendar from "./MonthsCalendar.vue"
+import DatesCalendar from "./DatesCalendar.vue"
 
 export default {
     name: "Calendar",
