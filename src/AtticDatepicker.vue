@@ -20,17 +20,7 @@
                     leave-to-class="opacity-0 translate-y-3">
 
             <div v-if="showCalendar" class="attic-datepicker-calendar absolute bg-white rounded-[28px] border py-5 px-6 shadow-xl flex items-start space-x-3 z-[99] min-w-0">
-                <button @click="calendarView.subtractMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-
-                <div class="flex space-x-12 w-full">
-                    <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
-                </div>
-
-                <button @click="calendarView.addMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
             </div>
 
         </Transition>
@@ -62,6 +52,7 @@ export default {
     name: 'AtticDatepicker',
     props: {
         date: String,
+        endDate: String,
         format: {
             type: String,
             default: 'DD MMM YYYY'
@@ -88,7 +79,7 @@ export default {
     },
     setup(props) {
         const showCalendar = ref(false)
-        const atticDatepicker = new Datepicker('2022-05-01', null, (props.isRange === 'true'), (props.autoApply === 'true'))
+        const atticDatepicker = new Datepicker(props.date ?? null, props.endDate ?? null, true, (props.autoApply === 'true'))
 
         const calendarView = computed(() => {
             const date = ref((props.date)? dayjs(props.date) : dayjs())

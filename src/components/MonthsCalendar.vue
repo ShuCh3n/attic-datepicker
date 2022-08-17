@@ -1,7 +1,7 @@
 <template>
     <div class="flex-1">
         <div class="grid grid-cols-2 gap-3 font-bold text-sm w-full">
-            <button v-for="month in 12" class="rounded-xl py-3 hover:bg-primary hover:text-white px-2" @click="selectMonth((month - 1))">{{ dayjs().month((month - 1)).format('MMMM') }}</button>
+            <button v-for="month in 12" class="rounded-xl py-3 hover:bg-attic-thirdly hover:text-white px-2" @click="selectMonth((month - 1))">{{ dayjs().month((month - 1)).format('MMMM') }}</button>
         </div>
     </div>
 </template>

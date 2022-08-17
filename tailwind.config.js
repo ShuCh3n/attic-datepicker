@@ -9,8 +9,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'attic-primary': colors.emerald,
-        'attic-secondary': colors.gray
+        'attic-primary': '#FFB3B3',
+        'attic-secondary': '#FFDBA4',
+        'attic-thirdly': '#FFE9AE',
+        'attic-fourth': '#C1EFFF'
       },
     },
   },
