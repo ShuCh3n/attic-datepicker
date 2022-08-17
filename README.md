@@ -2,7 +2,7 @@
 
 <p align="center">
     <a href="#" target="_blank">
-      <img alt="Attic Datepicker" width="100" style="border-radius: 100%;" src="">
+      <img alt="Attic Datepicker" width="100" style="border-radius: 100%;" src="https://user-images.githubusercontent.com/7081446/185246191-1ab31700-d07d-490e-84e8-b9bf092ac52a.png">
     </a><br><br>
     Beautiful single and range date picker that is built with Tailwind CSS and Vue 3 using day.js
 </p>
