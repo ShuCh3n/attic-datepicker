@@ -1,23 +1,21 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import svgLoader from 'vite-svg-loader';
 import { resolve } from 'path';
 
 export default defineConfig(({ command }) => {
+    const devLibPath = resolve(__dirname, '../../src/main.ts');
+    const prodLibPath = resolve(__dirname, '../../dist/attic-datepicker.es');
+
     return {
-        plugins: [vue(), vueJsx({ mergeProps: false }), svgLoader()],
+        plugins: [vue(), vueJsx({ mergeProps: false })],
         resolve: {
             alias: {
-                'attic-datepicker': resolve(__dirname, '../../src/main.ts')
+                'attic-datepicker': command === 'build' ? prodLibPath : devLibPath,
             },
         },
         build: {
-            rollupOptions: {
-                output: {
-                    dir: resolve(__dirname, '../public'),
-                }
-            }
+            outDir: resolve(__dirname, '../public')
         }
     }
 });

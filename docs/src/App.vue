@@ -1,6 +1,6 @@
 <template>
     <div class="bg-attic-thirdly flex flex-col justify-center py-14 items-center space-y-8 h-screen">
-        <img src="/images/logo.svg" class="w-60"/>
+        <img src="./images/logo.svg" class="w-60" alt="Attic Datepicker Logo"/>
 
         <h1 class="text-6xl text-[#BF8686] drop-shadow-xl">Attic Datepicker</h1>
         <p class="text-3xl text-red-400">Beautiful date picker compoment for Vue 3, Tailwind v3 using Day.js</p>
