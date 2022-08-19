@@ -6,7 +6,7 @@
   "main": "./index.js",
   "module": "./index.es.js",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Beautiful single and range date picker that is built with Tailwind CSS and Vue 3 using day.js",
   "keywords": [
     "attic",
@@ -38,12 +38,16 @@
   },
   "scripts": {
     "dev": "vite",
-    "docs:dev": "vite serve docs",
-    "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "build": "npm run build:lib-es & npm run build:lib-umd",
+    "build:lib-es": "LIB_FORMAT=es vite build",
+    "build:lib-umd": "LIB_FORMAT=umd vite build",
+    "docs:dev": "vite serve docs/src",
+    "docs:build": "vite build docs/src",
+    "docs:preview": "vite preview docs/src"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
+    "@vitejs/plugin-vue-jsx": "^2.0.0",
     "autoprefixer": "^10.4.8",
     "dayjs": "^1.11.5",
     "path": "^0.12.7",
@@ -52,7 +56,8 @@
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
     "vue": "^3.2.37",
-    "vue-tsc": "^0.39.5"
+    "vue-tsc": "^0.39.5",
+    "vite-svg-loader": "^3.4.0"
   },
   "peerDependencies": {
     "dayjs": "^1.11.5",

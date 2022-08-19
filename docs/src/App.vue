@@ -1,6 +1,6 @@
 <template>
     <div class="bg-attic-thirdly flex flex-col justify-center py-14 items-center space-y-8 h-screen">
-        <img src="./images/logo.svg" class="w-60"/>
+        <img src="/images/logo.svg" class="w-60"/>
 
         <h1 class="text-6xl text-[#BF8686] drop-shadow-xl">Attic Datepicker</h1>
         <p class="text-3xl text-red-400">Beautiful date picker compoment for Vue 3, Tailwind v3 using Day.js</p>
@@ -28,7 +28,7 @@
 
             <div class="space-y-5">
                 <div class="bg-yellow-100 p-5 rounded-xl border border-yellow-400 text-gray-700 flex items-center space-x-3">
-                    <img src="./images/warning.svg" class="w-6" />
+                    <img src="/images/warning.svg" class="w-6" />
                     <div>Attic datepicker relies on Vue v3, Tailwind v3, and Dayjs. Therefore, you need to install these packages first before you can use this package.</div>
                 </div>
             </div>
@@ -69,7 +69,7 @@ app<span class="token punctuation">.</span><span class="token function">mount</s
 
 <script>
 import { ref } from 'vue'
-import AtticDatepicker from "../src/AtticDatepicker.vue";
+import AtticDatepicker from "attic-datepicker";
 
 export default {
     name: "App.vue",

@@ -1,6 +1,14 @@
-import { createApp } from 'vue'
-import './style.css'
-import AtticDatepicker from './AtticDatepicker.vue'
+import { App } from 'vue';
 
-createApp(AtticDatepicker)
-    .mount('#app')
+import AtticDatepicker from './AtticDatepicker.vue'
+import Calendar from "./components/Calendar.vue";
+
+const api = {
+    install: (app: App) => {
+        app.component('AtticDatepicker', AtticDatepicker);
+    },
+};
+
+export default Object.assign(AtticDatepicker, api, {
+    Calendar,
+});
