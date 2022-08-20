@@ -1,7 +1,7 @@
 <template>
     <div class="space-y-2 relative" v-attic="">
         <slot
-            :value="(atticDatepicker.selectedDate.value)? atticDatepicker.selectedDate.value.format(format) : null"
+            :value="atticDatepicker.modelValue.value"
             :placeholder="$attrs.placeholder"
             :clear="clearDate"
         >
@@ -51,7 +51,7 @@ import Datepicker from './classes/Datepicker'
 export default {
     name: 'AtticDatepicker',
     props: {
-        date: String,
+        modelValue: Object,
         endDate: String,
         format: {
             type: String,
@@ -77,12 +77,12 @@ export default {
             }
         }
     },
-    setup(props) {
+    setup(props, { emit }) {
         const showCalendar = ref(false)
-        const atticDatepicker = new Datepicker(props.date ?? null, props.endDate ?? null, true, (props.autoApply === 'true'))
+        const atticDatepicker = new Datepicker(props.modelValue, props.format, (props.isRange || props.isRange === 'true'), (props.autoApply || props.autoApply === 'true'))
 
         const calendarView = computed(() => {
-            const date = ref((props.date)? dayjs(props.date) : dayjs())
+            const date = ref(atticDatepicker.selectedDate.value ?? dayjs())
 
             const subtractMonth = () => {
                 date.value = date.value.subtract(1, 'month')
@@ -107,6 +107,10 @@ export default {
             atticDatepicker.selectedDate.value = null
             showCalendar.value = false
         }
+
+        watch(() => atticDatepicker.modelValue.value, (value, prevValue) => {
+            emit('update:modelValue', value)
+        })
 
         provide('atticDatepicker', atticDatepicker)
         provide('showCalendar', showCalendar)

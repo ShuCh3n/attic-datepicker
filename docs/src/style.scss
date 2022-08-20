@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'attic-datepicker-style';
+
+body{
+    font-family: 'Secular One', sans-serif;
+}
+
+.token {
+    &.keyword {
+        font-style: italic;
+        @apply text-blue-500;
+    }
+
+    &.operator {
+        @apply text-attic-fourth;
+    }
+
+    &.comment {
+        font-style: italic;
+        @apply text-gray-600;
+    }
+
+    &.punctuation {
+        @apply text-blue-200;
+    }
+
+    &.string {
+        @apply text-attic-secondary;
+    }
+
+    &.function {
+        @apply text-attic-primary;
+    }
+
+    &.tag {
+        @apply text-orange-500;
+    }
+
+    &.attr-name {
+        @apply text-blue-400;
+        font-style: italic;
+    }
+}

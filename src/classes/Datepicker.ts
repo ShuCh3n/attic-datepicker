@@ -1,26 +1,55 @@
 import dayjs from 'dayjs'
-import {Ref, ref} from "vue";
+import { Ref, ref, watch} from "vue";
 
 export default class Datepicker{
+    modelValue: any
     selectedDate: Ref<dayjs.Dayjs | null>
     selectedEndDate: Ref<dayjs.Dayjs | null>
     isRange: boolean
     autoApply: boolean
+    format: string
 
-    constructor(date: string|null, selectedEndDate: string|null, isRange: boolean, autoApply: boolean) {
-        this.selectedDate = ref((date)? dayjs(date) : null)
+    constructor(date: any, format: string, isRange: boolean, autoApply: boolean) {
+        this.modelValue = ref(null)
+
+        this.selectedDate = ref(null)
         this.selectedEndDate = ref(null)
 
         this.autoApply = autoApply
         this.isRange = isRange
+        this.format = format
 
-        if(isRange) {
-            this.selectedEndDate.value = (selectedEndDate)? dayjs(selectedEndDate) : null
+        watch(() => this.selectedDate.value, (value, prevValue) => {
+            this.getValue()
+        })
+
+        watch(() => this.selectedEndDate.value, (value, prevValue) => {
+            this.getValue()
+        })
+
+        this.setDates(date)
+    }
+
+    private setDates(date: any) {
+        if(date)
+        {
+            if(typeof date == 'string') {
+                this.selectedDate.value = dayjs(date)
+
+                return
+            }
+
+            if(typeof date == 'object' && this.isRange) {
+                this.selectedDate.value = dayjs(date[0])
+
+                if(date.length > 1) {
+                    this.selectedEndDate.value = dayjs(date[1])
+                }
+            }
         }
     }
 
-    public selectDate(date: dayjs.Dayjs)
-    {
+    public selectDate(date: dayjs.Dayjs) {
         if(!this.isRange) {
             this.selectedDate.value = date
             return
@@ -58,6 +87,19 @@ export default class Datepicker{
         }
 
         return false
+    }
+
+    public getValue(): void {
+        if(!this.isRange) {
+            this.modelValue.value = this.selectedDate.value
+
+            return
+        }
+
+        if(this.selectedDate.value || this.selectedEndDate.value)
+        {
+            this.modelValue.value = [(this.selectedDate.value)? this.selectedDate.value.format(this.format) : null, (this.selectedEndDate.value)? this.selectedEndDate.value.format(this.format) : null]
+        }
     }
 }
 

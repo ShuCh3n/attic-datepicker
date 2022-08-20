@@ -57,7 +57,8 @@ const _export_sfc = (sfc, props) => {
 const _sfc_main$4 = {
   name: "YearCalendar",
   setup(props, { emit }) {
-    const atticDatepicker = inject("atticDatepicker");
+    inject("atticDatepicker");
+    const calendarView = inject("calendarView");
     const years = computed(() => {
       const years2 = [];
       const startYear = parseInt(dayjs().subtract(100, "years").format("YYYY"));
@@ -67,8 +68,7 @@ const _sfc_main$4 = {
       return years2.reverse();
     });
     const selectYear = (year) => {
-      atticDatepicker.selectedDate.value = atticDatepicker.selectedDate.value ? atticDatepicker.selectedDate.value.year(year) : dayjs().year(year);
-      atticDatepicker.selectedEndDate.value = null;
+      calendarView.value.date.value = calendarView.value.date.value.year(year);
       emit("changeView", "dates");
     };
     return {
@@ -97,10 +97,10 @@ const YearsCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_
 const _sfc_main$3 = {
   name: "MonthsCalendar",
   setup(props, { emit }) {
-    const atticDatepicker = inject("atticDatepicker");
+    inject("atticDatepicker");
+    const calendarView = inject("calendarView");
     const selectMonth = (month) => {
-      atticDatepicker.selectedDate.value = atticDatepicker.selectedDate.value ? atticDatepicker.selectedDate.value.month(month) : dayjs().month(month);
-      atticDatepicker.selectedEndDate.value = null;
+      calendarView.value.date.value = calendarView.value.date.value.month(month);
       emit("changeView", "dates");
     };
     return {
@@ -295,17 +295,39 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1]]);
 class Datepicker {
-  constructor(date, selectedEndDate, isRange, autoApply) {
+  constructor(date, format, isRange, autoApply) {
+    __publicField(this, "modelValue");
     __publicField(this, "selectedDate");
     __publicField(this, "selectedEndDate");
     __publicField(this, "isRange");
     __publicField(this, "autoApply");
-    this.selectedDate = ref(date ? dayjs(date) : null);
+    __publicField(this, "format");
+    this.modelValue = ref(null);
+    this.selectedDate = ref(null);
     this.selectedEndDate = ref(null);
     this.autoApply = autoApply;
     this.isRange = isRange;
-    if (isRange) {
-      this.selectedEndDate.value = selectedEndDate ? dayjs(selectedEndDate) : null;
+    this.format = format;
+    watch(() => this.selectedDate.value, (value, prevValue) => {
+      this.getValue();
+    });
+    watch(() => this.selectedEndDate.value, (value, prevValue) => {
+      this.getValue();
+    });
+    this.setDates(date);
+  }
+  setDates(date) {
+    if (date) {
+      if (typeof date == "string") {
+        this.selectedDate.value = dayjs(date);
+        return;
+      }
+      if (typeof date == "object" && this.isRange) {
+        this.selectedDate.value = dayjs(date[0]);
+        if (date.length > 1) {
+          this.selectedEndDate.value = dayjs(date[1]);
+        }
+      }
     }
   }
   selectDate(date) {
@@ -337,6 +359,15 @@ class Datepicker {
     }
     return false;
   }
+  getValue() {
+    if (!this.isRange) {
+      this.modelValue.value = this.selectedDate.value;
+      return;
+    }
+    if (this.selectedDate.value || this.selectedEndDate.value) {
+      this.modelValue.value = [this.selectedDate.value ? this.selectedDate.value.format(this.format) : null, this.selectedEndDate.value ? this.selectedEndDate.value.format(this.format) : null];
+    }
+  }
 }
 const AtticDatepicker_vue_vue_type_style_index_0_lang = "";
 dayjs.extend(localeData);
@@ -345,7 +376,7 @@ dayjs.extend(isBetween);
 const _sfc_main = {
   name: "AtticDatepicker",
   props: {
-    date: String,
+    modelValue: Object,
     endDate: String,
     format: {
       type: String,
@@ -371,11 +402,11 @@ const _sfc_main = {
       }
     }
   },
-  setup(props) {
+  setup(props, { emit }) {
     const showCalendar = ref(false);
-    const atticDatepicker = new Datepicker(props.date ?? null, props.endDate ?? null, true, props.autoApply === "true");
+    const atticDatepicker = new Datepicker(props.modelValue, props.format, props.isRange || props.isRange === "true", props.autoApply || props.autoApply === "true");
     const calendarView = computed(() => {
-      const date = ref(props.date ? dayjs(props.date) : dayjs());
+      const date = ref(atticDatepicker.selectedDate.value ?? dayjs());
       const subtractMonth = () => {
         date.value = date.value.subtract(1, "month");
       };
@@ -395,6 +426,9 @@ const _sfc_main = {
       atticDatepicker.selectedDate.value = null;
       showCalendar.value = false;
     };
+    watch(() => atticDatepicker.modelValue.value, (value, prevValue) => {
+      emit("update:modelValue", value);
+    });
     provide("atticDatepicker", atticDatepicker);
     provide("showCalendar", showCalendar);
     provide("calendarView", calendarView);
@@ -419,7 +453,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   const _directive_attic = resolveDirective("attic");
   return withDirectives((openBlock(), createElementBlock("div", _hoisted_1, [
     renderSlot(_ctx.$slots, "default", {
-      value: $setup.atticDatepicker.selectedDate.value ? $setup.atticDatepicker.selectedDate.value.format($props.format) : null,
+      value: $setup.atticDatepicker.modelValue.value,
       placeholder: _ctx.$attrs.placeholder,
       clear: $setup.clearDate
     }, () => [
@@ -451,6 +485,7 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   ]);
 }
 const AtticDatepicker = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]);
+const style = "";
 const api = {
   install: (app) => {
     app.component("AtticDatepicker", AtticDatepicker);

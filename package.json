@@ -3,10 +3,10 @@
   "files": [
     "dist"
   ],
-  "main": "./index.js",
-  "module": "./index.es.js",
+  "main": "./attic-datepicker.js",
+  "module": "./attic-datepicker.es.js",
   "private": false,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Beautiful single and range date picker that is built with Tailwind CSS and Vue 3 using day.js",
   "keywords": [
     "attic",
@@ -52,16 +52,20 @@
     "dayjs": "^1.11.5",
     "path": "^0.12.7",
     "postcss": "^8.4.16",
+    "prismjs": "^1.28.0",
     "tailwindcss": "^3.1.8",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
+    "vite-svg-loader": "^3.4.0",
     "vue": "^3.2.37",
-    "vue-tsc": "^0.39.5",
-    "vite-svg-loader": "^3.4.0"
+    "vue-tsc": "^0.39.5"
   },
   "peerDependencies": {
     "dayjs": "^1.11.5",
     "tailwindcss": "^3.1.8",
     "vue": "^3.2.37"
+  },
+  "dependencies": {
+    "sass": "^1.54.5"
   }
 }

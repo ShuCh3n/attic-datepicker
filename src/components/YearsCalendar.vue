@@ -14,6 +14,7 @@ export default {
     name: "YearCalendar",
     setup(props, { emit }) {
         const atticDatepicker = inject('atticDatepicker')
+        const calendarView = inject('calendarView')
 
         const years = computed(() => {
             const years = []
@@ -27,9 +28,7 @@ export default {
         })
 
         const selectYear = (year) => {
-            atticDatepicker.selectedDate.value = (atticDatepicker.selectedDate.value)? atticDatepicker.selectedDate.value.year(year) : dayjs().year(year)
-            atticDatepicker.selectedEndDate.value = null
-
+            calendarView.value.date.value = calendarView.value.date.value.year(year)
             emit('changeView', 'dates')
         }
 

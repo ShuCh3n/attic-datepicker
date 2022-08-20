@@ -30,10 +30,14 @@ const esConfig: UserConfig = {
         rollupOptions: {
             output:{
                 dir: resolve(__dirname, './dist'),
+                assetFileNames: (assetInfo) => {
+                    if (assetInfo.name === 'style.scss') return 'attic-datepicker.css';
+                    return assetInfo.name;
+                },
             },
             external: externalDependencies,
         },
-    },
+    }
 };
 
 const umdConfig: UserConfig = {
@@ -52,6 +56,10 @@ const umdConfig: UserConfig = {
             external: ['vue'],
             output: {
                 dir: resolve(__dirname, './dist'),
+                assetFileNames: (assetInfo) => {
+                    if (assetInfo.name === 'style.scss') return 'attic-datepicker.min.css';
+                    return assetInfo.name;
+                },
                 globals: {
                     vue: 'Vue',
                 },

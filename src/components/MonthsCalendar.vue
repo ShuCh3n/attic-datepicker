@@ -14,11 +14,10 @@ export default {
     name: "MonthsCalendar",
     setup(props, { emit }) {
         const atticDatepicker = inject('atticDatepicker')
+        const calendarView = inject('calendarView')
 
         const selectMonth = (month) => {
-            atticDatepicker.selectedDate.value = (atticDatepicker.selectedDate.value)? atticDatepicker.selectedDate.value.month(month) : dayjs().month(month)
-            atticDatepicker.selectedEndDate.value = null
-
+            calendarView.value.date.value = calendarView.value.date.value.month(month)
             emit('changeView', 'dates')
         }
 
