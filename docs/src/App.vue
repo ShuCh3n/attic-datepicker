@@ -32,8 +32,8 @@
     <div class="container mx-auto py-16 space-y-8">
         <div class="space-y-8">
             <div class="space-y-3">
-                <h2 class="text-xl text-attic-primary">Installation</h2>
-                <p class="text-sm">We will show you how to install attic datepicker in your project.</p>
+                <h2 class="text-xl text-attic-primary font-bold text-4xl">Installation</h2>
+                <p>We will show you how to install attic datepicker in your project.</p>
             </div>
 
             <div class="space-y-5">
@@ -44,7 +44,7 @@
             </div>
 
             <div class="space-y-5">
-                <h3>Install via npm</h3>
+                <h3 class="font-bold text-xl">Install via npm</h3>
 
                 <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
                     <pre class="language-atom"><code class=" language-atom"> $ npm install -S attic-datepicker</code></pre>
@@ -54,22 +54,42 @@
 
         <div class="space-y-8">
             <div class="space-y-3">
-                <h2 class="text-xl text-attic-primary">How it works</h2>
-                <p class="text-sm">Setup globally components</p>
+                <h3 class="font-bold text-xl">How it works</h3>
+                <p>Setup globally components</p>
             </div>
 
             <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
-                <v-prims language="js" :code="defaultContent.howItWorks.asGlobal"> </v-prims>
+                <v-prims language="js" :code="codeExamples.howItWorks.asGlobal"> </v-prims>
             </div>
 
-            <p class="text-sm">Use as single component</p>
+            <p>Use as single component</p>
 
             <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
-                <v-prims language="html" :code="defaultContent.howItWorks.asSFC"> </v-prims>
+                <v-prims language="html" :code="codeExamples.howItWorks.asSFC"> </v-prims>
+            </div>
+
+            <h3 class="font-bold text-xl">Tailwind Config</h3>
+
+            <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
+                <v-prims language="js" :code="codeExamples.tailwindConfig"></v-prims>
             </div>
 
         </div>
+
+        <div>
+            <div class="space-y-3">
+                <h2 class="text-xl text-attic-primary font-bold text-4xl">Theming options</h2>
+                <p>We keep Attic Datepicker flexible as much as possible. So it is really easy to customize the look of your datepicker in order to blend into your project. You can easily change the colors using the Tailwind CSS configuration.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-10">
+                <div  class="pt-6 sm:pt-8">
+                    <h3 class="font-bold text-xl">Light Mode</h3>
+                </div>
+            </div>
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -86,11 +106,11 @@ export default {
         VPrims
     },
     setup(){
-        const selectedDate = ref(['2020-01-01', '2020-02-01'])
+        const selectedDate = ref(null)
 
         return {
             selectedDate,
-            defaultContent: codeExamples(),
+            codeExamples: codeExamples(),
         }
     }
 }

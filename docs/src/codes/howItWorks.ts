@@ -13,7 +13,7 @@ app.mount('#app');
     asSFC: `<!-- Single file component -->
 <template>
   <div class="flex">
-    <litepie-datepicker v-model="selectedDate"></litepie-datepicker>
+    <attic-datepicker v-model="selectedDate"></attic-datepicker>
   </div>
 </template>
 
