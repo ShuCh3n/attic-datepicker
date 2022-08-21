@@ -13,8 +13,6 @@
     </a>
 </p>
 
----
-
 <p align="center">
     <a href="https://atticdatepicker.com" target="_blank">
       <img alt="Attic Datepicker" width="128" src="https://atticdatepicker.com/assets/logo.fcdc01bf.svg" />
