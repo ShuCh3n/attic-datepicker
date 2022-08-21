@@ -17,7 +17,7 @@
 
 <p align="center">
     <a href="https://atticdatepicker.com" target="_blank">
-      <img alt="Attic Datepicker" width="128" src="	https://atticdatepicker.com/assets/logo.fcdc01bf.svg">
+      <img alt="Attic Datepicker" width="128" src="https://atticdatepicker.com/assets/logo.fcdc01bf.svg" />
     </a>
     <br><br>
     Looking for a date picker that is not only beautiful and easy to use but also contains tons of features? Look no further than the Attic Datepicker! With our amazing Tailwind CSS and Vue 3 tool, you'll be able to create an incredible date picker
