@@ -1,14 +1,16 @@
 <template>
-    <div class="space-y-2 relative" v-attic="">
+    <div class="space-y-2 relative" v-attic:away="trigger">
         <slot
             :value="atticDatepicker.modelValue.value"
             :placeholder="$attrs.placeholder"
             :clear="clearDate"
         >
-            <div
-                class="relative block w-full pl-3 pr-12 py-2.5 rounded-lg overflow-hidden text-sm transition-colors bg-white border focus:ring focus:outline-none dark:focus:ring-opacity-20"
-                 v-bind="$attrs">
-                <span v-if="atticDatepicker.selectedDate.value">{{ atticDatepicker.selectedDate.value.format(format) }}</span>
+            <div class="relative block w-full pl-3 pr-12 py-3 rounded-lg overflow-hidden text-sm transition-colors bg-white border focus:ring focus:outline-none shadow" v-bind="$attrs">
+                <span v-if="!isRange && atticDatepicker.selectedDate.value">{{ atticDatepicker.modelValue.value }}</span>
+                <span v-else-if="isRange && atticDatepicker.modelValue.value &&  atticDatepicker.modelValue.value.length > 1">
+                    {{ atticDatepicker.modelValue.value[0] }} ~ {{ atticDatepicker.modelValue.value[1] }}
+                </span>
+                <span v-else class="text-gray-400">{{ $attrs.placeholder ?? 'Select Date' }}</span>
             </div>
         </slot>
 
@@ -19,7 +21,7 @@
                     leave-from-class="opacity-100 translate-y-0"
                     leave-to-class="opacity-0 translate-y-3">
 
-            <div v-if="showCalendar" class="attic-datepicker-calendar absolute bg-white rounded-[28px] border py-5 px-6 shadow-xl flex items-start space-x-3 z-[99] min-w-0">
+            <div v-if="showCalendar" class="attic-datepicker-calendar absolute bg-white rounded-[28px] border py-5 px-6 shadow-xl flex items-start space-x-3 z-[99] min-w-72">
                 <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
             </div>
 
@@ -57,9 +59,13 @@ export default {
             type: String,
             default: 'DD MMM YYYY'
         },
+        trigger: {
+            type: String,
+            default: null
+        },
         showXMonths: Number,
         isRange: Boolean,
-        autoApply: Boolean
+        keepOpen: Boolean
     },
     components: {
         Calendar,
@@ -79,7 +85,7 @@ export default {
     },
     setup(props, { emit }) {
         const showCalendar = ref(false)
-        const atticDatepicker = new Datepicker(props.modelValue, props.format, (props.isRange || props.isRange === 'true'), (props.autoApply || props.autoApply === 'true'))
+        const atticDatepicker = new Datepicker(props.modelValue, props.format, (props.isRange || props.isRange === 'true'), (typeof props.keepOpen === 'string')? !(props.keepOpen === 'false') : props.keepOpen)
 
         const calendarView = computed(() => {
             const date = ref(atticDatepicker.selectedDate.value ?? dayjs())

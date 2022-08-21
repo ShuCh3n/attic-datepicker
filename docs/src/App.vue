@@ -1,32 +1,52 @@
 <template>
-    <div class="bg-attic-thirdly flex flex-col justify-center py-14 items-center space-y-8 h-screen">
-        <img src="./images/logo.svg" class="w-60" alt="Attic Datepicker Logo"/>
+    <div class="bg-attic-thirdly flex flex-col justify-between py-14 items-center space-y-8 h-screen">
+        <div class="w-full">
+            <div class="container mx-auto">
+                <div class="justify-end flex space-x-5">
+                    <a href="https://github.com/ShuCh3n/attic-datepicker" target="_blank">
+                        <img src="/images/github.svg" class="w-10" />
+                    </a>
 
-        <h1 class="text-6xl text-[#BF8686] drop-shadow-xl">Attic Datepicker</h1>
-        <p class="text-3xl text-red-400">Beautiful date picker compoment for Vue 3, Tailwind v3 using Day.js</p>
+                    <a href="https://www.buymeacoffee.com/shuch3n" target="_blank" class="font-[Comfortaa] rounded-lg text-white font-white bg-[#FF5F5F] inline py-2 px-3 hover:bg-red-600">
+                        🌮 Buy me a taco
+                    </a>
+                </div>
+            </div>
+        </div>
 
-        <AtticDatepicker class="w-1/3" :isRange="true" :autoApply="true" v-model="selectedDate" v-slot="{ value }" format="DD MMM YYYY">
-            <div class="bg-white rounded-full divide-x flex p-3 cursor-pointer w-full border-8 border-attic-primary shadow-lg shadow-attic-primary/50">
-                <div class="flex-1 px-8 space-y-2">
-                    <h3 class="text-sm font-bold">From Date</h3>
-                    <div class="text-lg font-bold">
+        <div class="flex flex-col items-center space-y-8">
+            <img src="./images/logo.svg" class="w-60" alt="Attic Datepicker Logo"/>
+
+            <h1 class="text-6xl text-white drop-shadow-xl font-['Comfortaa']">Attic Datepicker</h1>
+            <p class="text-2xl text-white">Beautiful date picker compoment for Vue 3, Tailwind v3 using Day.js</p>
+
+            <AtticDatepicker class="w-full" :isRange="true" :autoApply="true" v-model="selectedDate" v-slot="{ value }" format="DD MMM YYYY">
+                <div class="bg-white rounded-full divide-x flex p-3 cursor-pointer w-full border-8 border-attic-primary shadow-lg shadow-attic-primary/50">
+                    <div class="flex-1 px-8 space-y-2">
+                        <h3 class="text-sm font-bold">From Date</h3>
+                        <div class="text-lg font-bold">
                         <span v-if="value">
                             {{ value[0] }}
                         </span>
-                        <span v-else class="text-gray-400">Select date</span>
+                            <span v-else class="text-gray-400">Select date</span>
+                        </div>
                     </div>
-                </div>
-                <div class="flex-1 px-8 space-y-2">
-                    <h3 class="text-sm font-bold">To Date</h3>
-                    <div class="text-lg font-bold">
+                    <div class="flex-1 px-8 space-y-2">
+                        <h3 class="text-sm font-bold">To Date</h3>
+                        <div class="text-lg font-bold">
                         <span v-if="value && value[1]">
                             {{ value[1] }}
                         </span>
-                        <span v-else class="text-gray-400">Select date</span>
+                            <span v-else class="text-gray-400">Select date</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </AtticDatepicker>
+            </AtticDatepicker>
+        </div>
+
+        <div>
+
+        </div>
     </div>
 
     <div class="container mx-auto py-16 space-y-8">
@@ -83,8 +103,190 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-10">
-                <div  class="pt-6 sm:pt-8">
+                <div  class="pt-6 sm:pt-8 space-y-3">
                     <h3 class="font-bold text-xl">Light Mode</h3>
+
+                    <p>
+                        You can easily change the light mode color palette colors by updating the <code class="text-purple-600">`attic-primary`</code> variable in the tailwind config.
+                    </p>
+
+                    <AtticDatepicker :autoApply="true"></AtticDatepicker>
+                </div>
+
+                <div  class="pt-6 sm:pt-8 space-y-3">
+                    <h3 class="font-bold text-xl">Dark Mode</h3>
+
+                    <div class="bg-orange-400 rounded p-3 text-white space-x-3">
+                        <img src="/images/horn.svg" class="w-6 inline" />
+                        <span class="font-bold">Coming in the next update...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-8">
+            <div class="space-y-3">
+                <h2 class="text-xl text-attic-primary font-bold text-4xl">Playground</h2>
+                <p>You can easily customize Attic Datepicker by tweaking the props.</p>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Default (Out of the box)</h3>
+
+                <p>This is the default look and feel without any configuration.</p>
+
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">
+                    <div class="w-full max-w-md">
+                        <attic-datepicker></attic-datepicker>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
+                            <v-prims language="html" :code="playground.defaults"></v-prims>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Range Select</h3>
+
+                <p>This is the default look and feel without any configuration.</p>
+
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">
+                    <div class="w-full max-w-md">
+                        <attic-datepicker :isRange="true"></attic-datepicker>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
+                            <v-prims language="html" :code="playground.asRange"></v-prims>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Custom Format</h3>
+
+                <p>This is the default look and feel without any configuration.</p>
+
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">
+                    <div class="w-full max-w-md">
+                        <attic-datepicker format="MMM DD YYYY"></attic-datepicker>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
+                            <v-prims language="html" :code="playground.customFormat"></v-prims>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Show multiple months</h3>
+
+                <p>This is the default look and feel without any configuration.</p>
+
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">
+                    <div class="w-full max-w-md">
+                        <attic-datepicker showXMonths="2" :isRange="true"></attic-datepicker>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
+                            <v-prims language="html" :code="playground.customFormat"></v-prims>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Keep Open</h3>
+
+                <p>This is the default look and feel without any configuration.</p>
+
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">
+                    <div class="w-full max-w-md">
+                        <attic-datepicker :keepOpen="true"></attic-datepicker>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
+                            <v-prims language="html" :code="playground.keepOpen"></v-prims>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Start from</h3>
+
+                <p>This is the default look and feel without any configuration.</p>
+
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">
+                    <div class="w-full max-w-md">
+                        <attic-datepicker :isRange="true" v-model="startFrom"></attic-datepicker>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
+                            <v-prims language="html" :code="playground.startFrom"></v-prims>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Disable Dates</h3>
+
+                <p>Currently, it is not possible to use disabling dates functionality. I'm still thinking which is the best way to implement this functionality. I want users to be able to disable individual dates and/or ranges. This function will be the top priority in the next update.</p>
+
+                <div class="bg-orange-400 rounded p-3 text-white space-x-3">
+                    <img src="/images/horn.svg" class="w-6 inline" />
+                    <span class="font-bold">Coming in the next update...</span>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Trigger</h3>
+
+                <p>This is the default look and feel without any configuration.</p>
+
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">
+                    <div class="w-full max-w-md">
+                        <div class="flex space-x-3">
+                            <attic-datepicker trigger="open-datepicker" class="flex-1"></attic-datepicker>
+
+                            <button type="button" id="open-datepicker" class="px-3 py-2 rounded bg-blue-500 border-b-2 border-blue-700 hover:bg-blue-600 font-bold text-white">Open Calendar</button>
+                        </div>
+
+                    </div>
+                    <div class="col-span-2">
+                        <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
+                            <v-prims language="html" :code="playground.startFrom"></v-prims>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Slot</h3>
+
+                <p>This is the default look and feel without any configuration.</p>
+
+                <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">
+                    <div class="w-full max-w-md">
+                        <attic-datepicker v-slot="{ value, placeholder, clear }" placeholder="Select Date">
+                            <div class="shadow-xl border-2 border-blue-600 rounded-full p-3 px-5 font-bold flex items-center justify-between">
+                                <div>
+                                    {{ value || placeholder }}
+                                </div>
+
+                                <img src="/images/calendar-silhouette.svg" class="w-5" />
+                            </div>
+                        </attic-datepicker>
+                    </div>
+                    <div class="col-span-2">
+                        <div class="rounded-xl overflow-hidden bg-gray-700 text-white py-6 px-5">
+                            <v-prims language="html" :code="playground.slot"></v-prims>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,10 +309,13 @@ export default {
     },
     setup(){
         const selectedDate = ref(null)
+        const startFrom = ref(['1990-01-01'])
 
         return {
             selectedDate,
+            startFrom,
             codeExamples: codeExamples(),
+            playground: codeExamples().playground,
         }
     }
 }

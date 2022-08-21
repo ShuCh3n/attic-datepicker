@@ -6,16 +6,16 @@ export default class Datepicker{
     selectedDate: Ref<dayjs.Dayjs | null>
     selectedEndDate: Ref<dayjs.Dayjs | null>
     isRange: boolean
-    autoApply: boolean
+    keepOpen: boolean
     format: string
 
-    constructor(date: any, format: string, isRange: boolean, autoApply: boolean) {
+    constructor(date: any, format: string, isRange: boolean, keepOpen: boolean) {
         this.modelValue = ref(null)
 
         this.selectedDate = ref(null)
         this.selectedEndDate = ref(null)
 
-        this.autoApply = autoApply
+        this.keepOpen = keepOpen
         this.isRange = isRange
         this.format = format
 
@@ -72,8 +72,7 @@ export default class Datepicker{
     }
 
     public ableToClose(): boolean {
-
-        if(this.autoApply)
+        if(!this.keepOpen)
         {
             if(this.isRange && this.selectedDate.value && this.selectedEndDate.value)
             {
@@ -90,8 +89,8 @@ export default class Datepicker{
     }
 
     public getValue(): void {
-        if(!this.isRange) {
-            this.modelValue.value = this.selectedDate.value
+        if(!this.isRange && this.selectedDate.value) {
+            this.modelValue.value = this.selectedDate.value.format(this.format)
 
             return
         }

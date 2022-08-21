@@ -18,13 +18,13 @@ export const useCurrentDate = (date: any) => {
 }
 
 export const useDirective = (binding: any) => {
-    const { instance } = binding;
+    const { instance, arg, value } = binding;
 
     document.body.addEventListener('click', $event => {
         if (instance.$el.contains($event.target)) {
             return (instance.showCalendar = true);
         }
 
-        return (instance.showCalendar = false)
+        instance.showCalendar = instance.$el.contains($event.target) || document.getElementById(value) === $event.target || value === $event.target
     });
 }
