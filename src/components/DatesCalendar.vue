@@ -23,17 +23,22 @@
                 <div v-for="weekDay in dayjs.weekdaysMin()" class="font-semibold text-sm text-gray-400 text-center">{{ weekDay }}</div>
 
                 <div v-for="day in monthDays">
-                    <div v-if="isSameMonth(day)" v-bind:class="[
-                             { 'bg-attic-primary text-white': isSelectedDay(day) },
-                             { 'rounded-full': (!atticDatepicker.isRange) },
-                             { 'rounded-l-full': (atticDatepicker.isRange && atticDatepicker.selectedDate.value && atticDatepicker.selectedDate.value.isSame(day)) },
-                             { 'rounded-r-full': (atticDatepicker.isRange && atticDatepicker.selectedEndDate.value && atticDatepicker.selectedEndDate.value.isSame(day)) },
-                             { 'bg-gray-100 rounded-none': isInBetweenRange(day) }
-                         ]">
-                        <div class="hover:border hover:rounded-full mx-auto border-primary cursor-pointer flex justify-center items-center font-bold text-sm w-12 h-12" @click="selectDate(day)">
-                            <span>{{ day.format('DD') }}</span>
+                    <div v-if="isSameMonth(day)">
+                        <div class="mx-auto border-primary cursor-pointer font-bold text-sm relative" @click="selectDate(day)">
+                            <div class="h-full w-1/2 bg-gray-100 absolute z-0" v-if="atticDatepicker.isRange && isSelectedDay(day) && (atticDatepicker.selectedDate.value && atticDatepicker.selectedEndDate.value)" v-bind:class="[
+                                 { 'right-0': (atticDatepicker.isRange && atticDatepicker.selectedDate.value && atticDatepicker.selectedDate.value.isSame(day)) },
+                                 { 'left-0': (atticDatepicker.isRange && atticDatepicker.selectedEndDate.value && atticDatepicker.selectedEndDate.value.isSame(day)) },
+                             ]"></div>
+                            <div class="h-full w-full bg-gray-100 absolute z-0" v-if="isInBetweenRange(day)"></div>
+
+                            <span class="z-10 block relative text-center align-middle hover:rounded-full block w-12 h-12 text-center align-middle flex items-center justify-center" v-bind:class="[
+                                 { 'bg-attic-primary text-white rounded-full': isSelectedDay(day) },
+                                 { 'hover:bg-gray-200': !isSelectedDay(day) }
+                             ]">{{ day.format('DD') }}</span>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>

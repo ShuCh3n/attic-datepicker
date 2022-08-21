@@ -64,9 +64,30 @@ export default usePlayground = () => {
     };
 </script>`
 
+    const showMultipleMonths = `<template>
+    <div class="flex">
+        <attic-datepicker v-model="selectedDate" showXMonths="2" :isRange="true"></attic-datepicker>
+    </div>
+</template>
+    
+<script>
+    import { ref } from 'vue';
+    
+    export default {
+        name: 'MyComponent',
+        setup() {
+            const selectedDate = ref([]);
+            
+            return {
+                selectedDate
+            };
+        }
+    };
+</script>`
+
     const keepOpen = `<template>
     <div class="flex">
-        <attic-datepicker v-model="selectedDate" :isRange="true"></attic-datepicker>
+        <attic-datepicker v-model="selectedDate" :keepOpen="true"></attic-datepicker>
     </div>
 </template>
     
@@ -87,7 +108,7 @@ export default usePlayground = () => {
 
     const startFrom = `<template>
     <div class="flex">
-        <attic-datepicker v-model="selectedDate" :keepOpen="true"></attic-datepicker>
+        <attic-datepicker v-model="selectedDate" :isRange="true"></attic-datepicker>
     </div>
 </template>
     
@@ -98,6 +119,28 @@ export default usePlayground = () => {
         name: 'MyComponent',
         setup() {
             const selectedDate = ref(['1990-01-01']);
+            
+            return {
+                selectedDate
+            };
+        }
+    };
+</script>`
+
+    const trigger = `<template>
+    <div class="flex space-x-3">
+        <attic-datepicker v-model="selectedDate" trigger="open-datepicker" class="flex-1"></attic-datepicker>
+        <button type="button" id="open-datepicker" class="px-3 py-2 rounded bg-blue-500 border-b-2 border-blue-700 hover:bg-blue-600 font-bold text-white">Open Calendar</button>
+    </div>
+</template>
+    
+<script>
+    import { ref } from 'vue';
+    
+    export default {
+        name: 'MyComponent',
+        setup() {
+            const selectedDate = ref(null);
             
             return {
                 selectedDate
@@ -136,13 +179,14 @@ export default usePlayground = () => {
 </script>`
 
 
-
     return {
         defaults,
         asRange,
         customFormat,
+        showMultipleMonths,
         keepOpen,
         startFrom,
+        trigger,
         slot
     }
 }

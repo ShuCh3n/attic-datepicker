@@ -25,12 +25,12 @@ const useCurrentDate = (date) => {
   );
 };
 const useDirective = (binding) => {
-  const { instance } = binding;
+  const { instance, arg, value } = binding;
   document.body.addEventListener("click", ($event) => {
     if (instance.$el.contains($event.target)) {
       return instance.showCalendar = true;
     }
-    return instance.showCalendar = false;
+    instance.showCalendar = instance.$el.contains($event.target) || document.getElementById(value) === $event.target || value === $event.target;
   });
 };
 const useCalendar = () => {
@@ -61,8 +61,8 @@ const _sfc_main$4 = {
     const calendarView = inject("calendarView");
     const years = computed(() => {
       const years2 = [];
-      const startYear = parseInt(dayjs().subtract(100, "years").format("YYYY"));
-      for (let i = 0; i <= 100; i++) {
+      const startYear = parseInt(dayjs().add(5, "years").subtract(105, "years").format("YYYY"));
+      for (let i = 0; i <= 105; i++) {
         years2.push(startYear + i);
       }
       return years2.reverse();
@@ -176,12 +176,17 @@ const _hoisted_2$1 = /* @__PURE__ */ createElementVNode("svg", {
 const _hoisted_3$1 = [
   _hoisted_2$1
 ];
-const _hoisted_4 = { class: "space-y-5" };
-const _hoisted_5 = { class: "text-center font-bold" };
-const _hoisted_6 = { class: "grid grid-cols-7" };
+const _hoisted_4$1 = { class: "space-y-5" };
+const _hoisted_5$1 = { class: "text-center font-bold" };
+const _hoisted_6$1 = { class: "grid grid-cols-7" };
 const _hoisted_7 = { class: "font-semibold text-sm text-gray-400 text-center" };
-const _hoisted_8 = ["onClick"];
-const _hoisted_9 = /* @__PURE__ */ createElementVNode("svg", {
+const _hoisted_8 = { key: 0 };
+const _hoisted_9 = ["onClick"];
+const _hoisted_10 = {
+  key: 1,
+  class: "h-full w-full bg-gray-100 absolute z-0"
+};
+const _hoisted_11 = /* @__PURE__ */ createElementVNode("svg", {
   class: "w-3",
   xmlns: "http://www.w3.org/2000/svg",
   "xmlns:xlink": "http://www.w3.org/1999/xlink",
@@ -194,8 +199,8 @@ const _hoisted_9 = /* @__PURE__ */ createElementVNode("svg", {
     /* @__PURE__ */ createElementVNode("path", { d: "M352.025,196.712L165.884,10.848C159.029,3.615,150.469,0,140.187,0c-10.282,0-18.842,3.619-25.697,10.848L92.792,32.264\n                    c-7.044,7.043-10.566,15.604-10.566,25.692c0,9.897,3.521,18.56,10.566,25.981l138.753,138.473L92.786,361.168\n                    c-7.042,7.043-10.564,15.604-10.564,25.693c0,9.896,3.521,18.562,10.564,25.98l21.7,21.413\n                    c7.043,7.043,15.612,10.564,25.697,10.564c10.089,0,18.656-3.521,25.697-10.564l186.145-185.864\n                    c7.046-7.423,10.571-16.084,10.571-25.981C362.597,212.321,359.071,203.755,352.025,196.712z" })
   ])
 ], -1);
-const _hoisted_10 = [
-  _hoisted_9
+const _hoisted_12 = [
+  _hoisted_11
 ];
 function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
   return openBlock(), createElementBlock("div", _hoisted_1$1, [
@@ -203,8 +208,8 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: _cache[0] || (_cache[0] = ($event) => $setup.calendarView.subtractMonth()),
       class: "w-10 h-10 hover:bg-gray-100 rounded-full flex items-center justify-center"
     }, _hoisted_3$1),
-    createElementVNode("div", _hoisted_4, [
-      createElementVNode("h2", _hoisted_5, [
+    createElementVNode("div", _hoisted_4$1, [
+      createElementVNode("h2", _hoisted_5$1, [
         createElementVNode("span", {
           class: "hover:bg-attic-secondary hover:text-white p-2 rounded-lg cursor-pointer",
           onClick: _cache[1] || (_cache[1] = ($event) => _ctx.$emit("changeView", "months"))
@@ -214,29 +219,33 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
           onClick: _cache[2] || (_cache[2] = ($event) => _ctx.$emit("changeView", "years"))
         }, toDisplayString($setup.date.format("YYYY")), 1)
       ]),
-      createElementVNode("div", _hoisted_6, [
+      createElementVNode("div", _hoisted_6$1, [
         (openBlock(true), createElementBlock(Fragment, null, renderList($setup.dayjs.weekdaysMin(), (weekDay) => {
           return openBlock(), createElementBlock("div", _hoisted_7, toDisplayString(weekDay), 1);
         }), 256)),
         (openBlock(true), createElementBlock(Fragment, null, renderList($setup.monthDays, (day) => {
           return openBlock(), createElementBlock("div", null, [
-            $setup.isSameMonth(day) ? (openBlock(), createElementBlock("div", {
-              key: 0,
-              class: normalizeClass([
-                { "bg-attic-primary text-white": $setup.isSelectedDay(day) },
-                { "rounded-full": !$setup.atticDatepicker.isRange },
-                { "rounded-l-full": $setup.atticDatepicker.isRange && $setup.atticDatepicker.selectedDate.value && $setup.atticDatepicker.selectedDate.value.isSame(day) },
-                { "rounded-r-full": $setup.atticDatepicker.isRange && $setup.atticDatepicker.selectedEndDate.value && $setup.atticDatepicker.selectedEndDate.value.isSame(day) },
-                { "bg-gray-100 rounded-none": $setup.isInBetweenRange(day) }
-              ])
-            }, [
+            $setup.isSameMonth(day) ? (openBlock(), createElementBlock("div", _hoisted_8, [
               createElementVNode("div", {
-                class: "hover:border hover:rounded-full mx-auto border-primary cursor-pointer flex justify-center items-center font-bold text-sm w-12 h-12",
+                class: "mx-auto border-primary cursor-pointer font-bold text-sm relative",
                 onClick: ($event) => $setup.selectDate(day)
               }, [
-                createElementVNode("span", null, toDisplayString(day.format("DD")), 1)
-              ], 8, _hoisted_8)
-            ], 2)) : createCommentVNode("", true)
+                $setup.atticDatepicker.isRange && $setup.isSelectedDay(day) && ($setup.atticDatepicker.selectedDate.value && $setup.atticDatepicker.selectedEndDate.value) ? (openBlock(), createElementBlock("div", {
+                  key: 0,
+                  class: normalizeClass(["h-full w-1/2 bg-gray-100 absolute z-0", [
+                    { "right-0": $setup.atticDatepicker.isRange && $setup.atticDatepicker.selectedDate.value && $setup.atticDatepicker.selectedDate.value.isSame(day) },
+                    { "left-0": $setup.atticDatepicker.isRange && $setup.atticDatepicker.selectedEndDate.value && $setup.atticDatepicker.selectedEndDate.value.isSame(day) }
+                  ]])
+                }, null, 2)) : createCommentVNode("", true),
+                $setup.isInBetweenRange(day) ? (openBlock(), createElementBlock("div", _hoisted_10)) : createCommentVNode("", true),
+                createElementVNode("span", {
+                  class: normalizeClass(["z-10 block relative text-center align-middle hover:rounded-full block w-12 h-12 text-center align-middle flex items-center justify-center", [
+                    { "bg-attic-primary text-white rounded-full": $setup.isSelectedDay(day) },
+                    { "hover:bg-gray-200": !$setup.isSelectedDay(day) }
+                  ]])
+                }, toDisplayString(day.format("DD")), 3)
+              ], 8, _hoisted_9)
+            ])) : createCommentVNode("", true)
           ]);
         }), 256))
       ])
@@ -244,7 +253,7 @@ function _sfc_render$2(_ctx, _cache, $props, $setup, $data, $options) {
     createElementVNode("button", {
       onClick: _cache[3] || (_cache[3] = ($event) => $setup.calendarView.addMonth()),
       class: "w-10 h-10 hover:bg-gray-100 rounded-full flex items-center justify-center"
-    }, _hoisted_10)
+    }, _hoisted_12)
   ]);
 }
 const DatesCalendar = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2]]);
@@ -295,17 +304,17 @@ function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
 }
 const Calendar = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["render", _sfc_render$1]]);
 class Datepicker {
-  constructor(date, format, isRange, autoApply) {
+  constructor(date, format, isRange, keepOpen) {
     __publicField(this, "modelValue");
     __publicField(this, "selectedDate");
     __publicField(this, "selectedEndDate");
     __publicField(this, "isRange");
-    __publicField(this, "autoApply");
+    __publicField(this, "keepOpen");
     __publicField(this, "format");
     this.modelValue = ref(null);
     this.selectedDate = ref(null);
     this.selectedEndDate = ref(null);
-    this.autoApply = autoApply;
+    this.keepOpen = keepOpen;
     this.isRange = isRange;
     this.format = format;
     watch(() => this.selectedDate.value, (value, prevValue) => {
@@ -349,7 +358,7 @@ class Datepicker {
     }
   }
   ableToClose() {
-    if (this.autoApply) {
+    if (!this.keepOpen) {
       if (this.isRange && this.selectedDate.value && this.selectedEndDate.value) {
         return true;
       }
@@ -360,8 +369,8 @@ class Datepicker {
     return false;
   }
   getValue() {
-    if (!this.isRange) {
-      this.modelValue.value = this.selectedDate.value;
+    if (!this.isRange && this.selectedDate.value) {
+      this.modelValue.value = this.selectedDate.value.format(this.format);
       return;
     }
     if (this.selectedDate.value || this.selectedEndDate.value) {
@@ -382,9 +391,13 @@ const _sfc_main = {
       type: String,
       default: "DD MMM YYYY"
     },
+    trigger: {
+      type: String,
+      default: null
+    },
     showXMonths: Number,
     isRange: Boolean,
-    autoApply: Boolean
+    keepOpen: Boolean
   },
   components: {
     Calendar,
@@ -404,7 +417,7 @@ const _sfc_main = {
   },
   setup(props, { emit }) {
     const showCalendar = ref(false);
-    const atticDatepicker = new Datepicker(props.modelValue, props.format, props.isRange || props.isRange === "true", props.autoApply || props.autoApply === "true");
+    const atticDatepicker = new Datepicker(props.modelValue, props.format, props.isRange || props.isRange === "true", typeof props.keepOpen === "string" ? !(props.keepOpen === "false") : props.keepOpen);
     const calendarView = computed(() => {
       const date = ref(atticDatepicker.selectedDate.value ?? dayjs());
       const subtractMonth = () => {
@@ -442,12 +455,18 @@ const _sfc_main = {
     };
   }
 };
-const _hoisted_1 = { class: "space-y-2 relative" };
+const _hoisted_1 = { class: "md:space-y-2" };
 const _hoisted_2 = { key: 0 };
-const _hoisted_3 = {
-  key: 0,
-  class: "attic-datepicker-calendar absolute bg-white rounded-[28px] border py-5 px-6 shadow-xl flex items-start space-x-3 z-[99] min-w-0"
+const _hoisted_3 = { key: 1 };
+const _hoisted_4 = {
+  key: 2,
+  class: "text-gray-400"
 };
+const _hoisted_5 = {
+  key: 0,
+  class: "attic-datepicker-calendar md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8 overflow-y-auto"
+};
+const _hoisted_6 = { class: "md:flex md:items-start md:space-x-3 md:space-y-0 space-y-8" };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_Calendar = resolveComponent("Calendar");
   const _directive_attic = resolveDirective("attic");
@@ -457,8 +476,8 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       placeholder: _ctx.$attrs.placeholder,
       clear: $setup.clearDate
     }, () => [
-      createElementVNode("div", mergeProps({ class: "relative block w-full pl-3 pr-12 py-2.5 rounded-lg overflow-hidden text-sm transition-colors bg-white border focus:ring focus:outline-none dark:focus:ring-opacity-20" }, _ctx.$attrs), [
-        $setup.atticDatepicker.selectedDate.value ? (openBlock(), createElementBlock("span", _hoisted_2, toDisplayString($setup.atticDatepicker.selectedDate.value.format($props.format)), 1)) : createCommentVNode("", true)
+      createElementVNode("div", mergeProps({ class: "relative block w-full pl-3 pr-12 py-3 rounded-lg overflow-hidden text-sm transition-colors bg-white border focus:ring focus:outline-none shadow" }, _ctx.$attrs), [
+        !$props.isRange && $setup.atticDatepicker.selectedDate.value ? (openBlock(), createElementBlock("span", _hoisted_2, toDisplayString($setup.atticDatepicker.modelValue.value), 1)) : $props.isRange && $setup.atticDatepicker.modelValue.value && $setup.atticDatepicker.modelValue.value.length > 1 ? (openBlock(), createElementBlock("span", _hoisted_3, toDisplayString($setup.atticDatepicker.modelValue.value[0]) + " ~ " + toDisplayString($setup.atticDatepicker.modelValue.value[1]), 1)) : (openBlock(), createElementBlock("span", _hoisted_4, toDisplayString(_ctx.$attrs.placeholder ?? "Select Date"), 1))
       ], 16)
     ]),
     createVNode(Transition, {
@@ -470,18 +489,24 @@ function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
       "leave-to-class": "opacity-0 translate-y-3"
     }, {
       default: withCtx(() => [
-        $setup.showCalendar ? (openBlock(), createElementBlock("div", _hoisted_3, [
-          (openBlock(true), createElementBlock(Fragment, null, renderList(parseInt($props.showXMonths ?? 1), (x) => {
-            return openBlock(), createBlock(_component_Calendar, {
-              date: $setup.calendarView.date.value.add(x - 1, "month")
-            }, null, 8, ["date"]);
-          }), 256))
+        $setup.showCalendar ? (openBlock(), createElementBlock("div", _hoisted_5, [
+          createElementVNode("div", _hoisted_6, [
+            (openBlock(true), createElementBlock(Fragment, null, renderList(parseInt($props.showXMonths ?? 1), (x) => {
+              return openBlock(), createBlock(_component_Calendar, {
+                date: $setup.calendarView.date.value.add(x - 1, "month")
+              }, null, 8, ["date"]);
+            }), 256))
+          ]),
+          createElementVNode("button", {
+            class: "sm:hidden w-full bg-red-500 rounded text-white font-bold p-3",
+            onClick: _cache[0] || (_cache[0] = ($event) => $setup.showCalendar = false)
+          }, " Close ")
         ])) : createCommentVNode("", true)
       ]),
       _: 1
     })
   ])), [
-    [_directive_attic]
+    [_directive_attic, $props.trigger, "away"]
   ]);
 }
 const AtticDatepicker = /* @__PURE__ */ _export_sfc(_sfc_main, [["render", _sfc_render]]);

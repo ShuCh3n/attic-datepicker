@@ -3,7 +3,7 @@ import tailwindConfig from './codes/tailwindConfig'
 import usePlayground from "./codes/playground"
 
 const codeExamples = () => {
-    const { defaults, asRange, customFormat, keepOpen, startFrom, slot } = usePlayground()
+    const { defaults, asRange, customFormat, keepOpen, startFrom, slot, showMultipleMonths, trigger } = usePlayground()
 
     return {
         howItWorks,
@@ -14,21 +14,9 @@ const codeExamples = () => {
             customFormat,
             keepOpen,
             startFrom,
-            slot
-            // overlay,
-            // asSingle,
-            // asSingleWithRange,
-            // customPlaceholder,
-            // separator,
-            // formatter,
-            // autoApply,
-            // startFrom,
-            // shortcuts,
-            // disableDate,
-            // disableInRange,
-            // trigger,
-            // useSlot,
-            // options
+            slot,
+            showMultipleMonths,
+            trigger
         },
     }
 }

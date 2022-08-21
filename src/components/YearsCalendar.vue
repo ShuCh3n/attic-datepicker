@@ -18,9 +18,9 @@ export default {
 
         const years = computed(() => {
             const years = []
-            const startYear = parseInt(dayjs().subtract(100, 'years').format('YYYY'))
+            const startYear = parseInt(dayjs().add(5, 'years').subtract(105, 'years').format('YYYY'))
 
-            for (let i = 0; i <= 100; i++) {
+            for (let i = 0; i <= 105; i++) {
                 years.push(startYear + i)
             }
 

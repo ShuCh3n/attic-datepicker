@@ -1,5 +1,5 @@
 <template>
-    <div class="space-y-2 relative" v-attic:away="trigger">
+    <div class="md:space-y-2" v-attic:away="trigger">
         <slot
             :value="atticDatepicker.modelValue.value"
             :placeholder="$attrs.placeholder"
@@ -21,10 +21,13 @@
                     leave-from-class="opacity-100 translate-y-0"
                     leave-to-class="opacity-0 translate-y-3">
 
-            <div v-if="showCalendar" class="attic-datepicker-calendar absolute bg-white rounded-[28px] border py-5 px-6 shadow-xl flex items-start space-x-3 z-[99] min-w-72">
-                <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
-            </div>
+            <div v-if="showCalendar" class="attic-datepicker-calendar md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8 overflow-y-auto">
+                <div class="md:flex md:items-start md:space-x-3 md:space-y-0 space-y-8">
+                    <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
+                </div>
 
+                <button class="sm:hidden w-full bg-red-500 rounded text-white font-bold p-3" @click="showCalendar = false"> Close </button>
+            </div>
         </Transition>
 
     </div>
@@ -135,17 +138,19 @@ export default {
 </script>
 
 <style>
-    .attic-datepicker-calendar::before {
-        --attic-datepicker: 0px;
-        content: '';
-        @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1];
-        transform: translate(50%, -50%) rotate(-45deg);
+    @media (min-width: 768px) {
+        .attic-datepicker-calendar::before {
+            --attic-datepicker: 0px;
+            content: '';
+            @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1];
+            transform: translate(50%, -50%) rotate(-45deg);
 
-        clip-path: polygon(
+            clip-path: polygon(
                 calc(var(--attic-datepicker) * -1) calc(var(--attic-datepicker) * -1),
                 calc(100% + var(--attic-datepicker)) calc(var(--attic-datepicker) * -1),
                 calc(100% + var(--attic-datepicker))
                 calc(100% + var(--attic-datepicker))
-        );
+            );
+        }
     }
 </style>
