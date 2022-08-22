@@ -1,6 +1,8 @@
 <template>
-    <div class="bg-attic-thirdly flex flex-col justify-between md:py-14 py-5 items-center space-y-8 h-screen">
-        <div class="w-full">
+
+    <img src="/images/bg.png" class="absolute z-0 w-full h-screen object-cover" />
+    <div class="flex flex-col justify-between md:py-14 py-5 items-center space-y-8 h-screen relative z-10">
+      <div class="w-full">
             <div class="container mx-auto xl:px-0 px-5">
                 <div class="justify-end flex space-x-5">
                     <a href="https://github.com/ShuCh3n/attic-datepicker" target="_blank">
@@ -18,7 +20,7 @@
             <img src="./images/logo.svg" class="md:w-60 w-32" alt="Attic Datepicker Logo"/>
 
             <h1 class="md:text-6xl text-4xl text-white drop-shadow-xl font-['Comfortaa']">Attic Datepicker</h1>
-            <p class="md:text-2xl text-lg text-white">Beautiful date picker compoment for Vue 3, Tailwind v3 using Day.js</p>
+            <p class="md:text-2xl text-lg text-white drop-shadow-xl">Beautiful date picker compoment for Vue 3, Tailwind v3 using Day.js</p>
 
             <AtticDatepicker class="w-full" :isRange="true" :autoApply="true" v-model="selectedDate" v-slot="{ value }" format="DD MMM YYYY">
                 <div class="bg-white rounded-full divide-x flex p-3 cursor-pointer w-full md:border-8 border-4 border-attic-primary shadow-lg shadow-attic-primary/50">
@@ -53,7 +55,7 @@
         <div class="space-y-8">
             <div class="space-y-3">
                 <h2 class="text-attic-primary font-bold md:text-4xl text-2xl">Installation</h2>
-                <p>We will show you how to install attic datepicker in your project.</p>
+                <p>I will show you how to install attic datepicker in your project.</p>
             </div>
 
             <div class="space-y-5">
