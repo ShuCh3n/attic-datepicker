@@ -464,7 +464,7 @@ const _hoisted_4 = {
 };
 const _hoisted_5 = {
   key: 0,
-  class: "attic-datepicker-calendar md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8 overflow-y-auto"
+  class: "attic-datepicker-calendar place-left md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8"
 };
 const _hoisted_6 = { class: "md:flex md:items-start md:space-x-3 md:space-y-0 space-y-8" };
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {

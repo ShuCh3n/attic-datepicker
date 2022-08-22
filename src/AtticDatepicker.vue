@@ -21,7 +21,7 @@
                     leave-from-class="opacity-100 translate-y-0"
                     leave-to-class="opacity-0 translate-y-3">
 
-            <div v-if="showCalendar" class="attic-datepicker-calendar md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8 overflow-y-auto">
+            <div v-if="showCalendar" class="attic-datepicker-calendar place-left md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8">
                 <div class="md:flex md:items-start md:space-x-3 md:space-y-0 space-y-8">
                     <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
                 </div>
@@ -140,17 +140,23 @@ export default {
 <style>
     @media (min-width: 768px) {
         .attic-datepicker-calendar::before {
-            --attic-datepicker: 0px;
+            --attic-datepicker-calendar: 0px;
             content: '';
             @apply absolute top-0 w-4 h-4 bg-white shadow border border-black/[.1];
             transform: translate(50%, -50%) rotate(-45deg);
-
             clip-path: polygon(
-                calc(var(--attic-datepicker) * -1) calc(var(--attic-datepicker) * -1),
-                calc(100% + var(--attic-datepicker)) calc(var(--attic-datepicker) * -1),
-                calc(100% + var(--attic-datepicker))
-                calc(100% + var(--attic-datepicker))
+                calc(var(--attic-datepicker-calendar) * -1) calc(var(--attic-datepicker-calendar) * -1),
+                calc(100% + var(--attic-datepicker-calendar)) calc(var(--attic-datepicker-calendar) * -1),
+                calc(100% + var(--attic-datepicker-calendar))
+                calc(100% + var(--attic-datepicker-calendar))
             );
+
+        }
+        .attic-datepicker-calendar.place-left::before {
+            @apply left-8;
+        }
+        .attic-datepicker-calendar.place-right::before {
+            @apply right-5;
         }
     }
 </style>
