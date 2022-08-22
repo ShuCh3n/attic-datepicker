@@ -31,7 +31,7 @@ const esConfig: UserConfig = {
             output:{
                 dir: resolve(__dirname, './dist'),
                 assetFileNames: (assetInfo) => {
-                    if (assetInfo.name === 'style.scss') return 'attic-datepicker.css';
+                    if (assetInfo.name === 'style.css') return 'attic-datepicker.css';
                     return assetInfo.name;
                 },
             },
@@ -57,7 +57,7 @@ const umdConfig: UserConfig = {
             output: {
                 dir: resolve(__dirname, './dist'),
                 assetFileNames: (assetInfo) => {
-                    if (assetInfo.name === 'style.scss') return 'attic-datepicker.min.css';
+                    if (assetInfo.name === 'style.css') return 'attic-datepicker.min.css';
                     return assetInfo.name;
                 },
                 globals: {
