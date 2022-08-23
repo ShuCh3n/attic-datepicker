@@ -6,7 +6,7 @@
   "main": "./dist/attic-datepicker.js",
   "module": "./dist/attic-datepicker.es.js",
   "private": false,
-  "version": "0.0.8",
+  "version": "1.0.0",
   "description": "Beautiful single and range date picker that is built with Tailwind CSS and Vue 3 using day.js",
   "keywords": [
     "attic",
