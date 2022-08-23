@@ -3,11 +3,12 @@ import { defineConfig, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import svgLoader from 'vite-svg-loader';
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 const externalDependencies = (id: string) => !id.startsWith('.') && !id.startsWith('/');
 
 const baseConfig: UserConfig = {
-    plugins: [vue(), vueJsx({ mergeProps: false }), svgLoader()],
+    plugins: [vue(), vueJsx({ mergeProps: false }), svgLoader(), cssInjectedByJsPlugin()],
     resolve: {
         alias: {
             'attic-datepicker': resolve(__dirname, './src/main.ts'),
