@@ -455,6 +455,7 @@ const ke = /* @__PURE__ */ Q(Ue, [["render", Pe]]), qe = {
 function ct(i, t, l, e, c, p) {
   return k(), $("div", Ge, [
     _("button", {
+      type: "button",
       onClick: t[0] || (t[0] = (r) => e.calendarView.subtractMonth()),
       class: "w-10 h-10 hover:bg-gray-100 rounded-full flex items-center justify-center"
     }, Ke),
@@ -497,6 +498,7 @@ function ct(i, t, l, e, c, p) {
       ])
     ]),
     _("button", {
+      type: "button",
       onClick: t[3] || (t[3] = (r) => e.calendarView.addMonth()),
       class: "w-10 h-10 hover:bg-gray-100 rounded-full flex items-center justify-center"
     }, lt)

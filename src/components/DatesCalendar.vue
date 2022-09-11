@@ -1,7 +1,7 @@
 <template>
     <div class="flex-1 flex">
 
-        <button @click="calendarView.subtractMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full flex items-center justify-center">
+        <button type="button" @click="calendarView.subtractMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full flex items-center justify-center">
             <svg class="w-3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 444.531 444.531" xml:space="preserve">
                         <g>
                           <path d="M213.13,222.409L351.88,83.653c7.05-7.043,10.567-15.657,10.567-25.841c0-10.183-3.518-18.793-10.567-25.835
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <button @click="calendarView.addMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full flex items-center justify-center">
+        <button type="button" @click="calendarView.addMonth()" class="w-10 h-10 hover:bg-gray-100 rounded-full flex items-center justify-center">
             <svg class="w-3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 444.531 444.531" xml:space="preserve">
                 <g>
                     <path d="M352.025,196.712L165.884,10.848C159.029,3.615,150.469,0,140.187,0c-10.282,0-18.842,3.619-25.697,10.848L92.792,32.264
