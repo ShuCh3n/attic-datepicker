@@ -3,12 +3,11 @@ import { defineConfig, UserConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import svgLoader from 'vite-svg-loader';
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 const externalDependencies = (id: string) => !id.startsWith('.') && !id.startsWith('/');
 
 const baseConfig: UserConfig = {
-    plugins: [vue(), vueJsx({ mergeProps: false }), svgLoader(), cssInjectedByJsPlugin()],
+    plugins: [vue(), vueJsx({ mergeProps: false }), svgLoader()],
     resolve: {
         alias: {
             'attic-datepicker': resolve(__dirname, './src/main.ts'),
@@ -22,21 +21,25 @@ const esConfig: UserConfig = {
         minify: false,
         target: 'es2021',
         emptyOutDir: false,
+        cssCodeSplit: true,
         lib: {
             entry: resolve(__dirname, './src/main.ts'),
             name: 'AtticDatepicker',
-            formats: ['es'],
+            formats: ['es', 'cjs'],
             fileName: (format) => `attic-datepicker.${format}.js`,
         },
         rollupOptions: {
-            output:{
+            external: ['vue'],
+            output: {
                 dir: resolve(__dirname, './dist'),
                 assetFileNames: (assetInfo) => {
                     if (assetInfo.name === 'style.css') return 'attic-datepicker.css';
                     return assetInfo.name;
                 },
+                globals: {
+                    vue: 'Vue',
+                },
             },
-            external: externalDependencies,
         },
     }
 };
@@ -47,18 +50,18 @@ const umdConfig: UserConfig = {
         minify: 'esbuild',
         target: 'es2021',
         emptyOutDir: false,
+        cssCodeSplit: true,
         lib: {
             entry: resolve(__dirname, './src/main.ts'),
             name: 'AtticDatepicker',
-            formats: ['umd'],
-            fileName: () => `attic-datepicker.js`,
+            fileName: (format) => `attic-datepicker.${format}.js`,
         },
         rollupOptions: {
             external: ['vue'],
             output: {
                 dir: resolve(__dirname, './dist'),
                 assetFileNames: (assetInfo) => {
-                    if (assetInfo.name === 'style.css') return 'attic-datepicker.min.css';
+                    if (assetInfo.name === 'src/main.css') return 'attic-datepicker.css';
                     return assetInfo.name;
                 },
                 globals: {
@@ -77,9 +80,9 @@ export default defineConfig(({ command }) => {
 
     const format = process.env.LIB_FORMAT;
 
-    if (format === 'es') {
-        return { ...baseConfig, ...esConfig };
-    }
+    // if (format === 'es') {
+    //     return { ...baseConfig, ...esConfig };
+    // }
 
     return { ...baseConfig, ...umdConfig };
 });
