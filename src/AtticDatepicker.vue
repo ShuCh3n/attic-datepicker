@@ -26,7 +26,7 @@
                     <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
                 </div>
 
-                <button class="sm:hidden w-full bg-red-500 rounded text-white font-bold p-3" @click="showCalendar = false"> Close </button>
+                <button type="button" class="sm:hidden w-full bg-red-500 rounded text-white font-bold p-3" @click="showCalendar = false"> Close </button>
             </div>
         </Transition>
 

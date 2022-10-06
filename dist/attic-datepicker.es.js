@@ -20,7 +20,7 @@ const Re = (i) => {
     t.showCalendar = t.$el.contains(c.target) || document.getElementById(e) === c.target || e === c.target;
   });
 };
-var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {}, we = { exports: {} };
+var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {}, ye = { exports: {} };
 (function(i, t) {
   (function(l, e) {
     i.exports = e();
@@ -57,8 +57,8 @@ var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         if (!a && h.length > 1)
           return m(h[0]);
       } else {
-        var w = s.name;
-        R[w] = s, a = w;
+        var y = s.name;
+        R[y] = s, a = y;
       }
       return !d && a && (j = a), a || !d && j;
     }, S = function(m, s) {
@@ -66,8 +66,8 @@ var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         return m.clone();
       var n = typeof s == "object" ? s : {};
       return n.date = m, n.args = arguments, new ee(n);
-    }, y = ue;
-    y.l = K, y.i = de, y.w = function(m, s) {
+    }, w = ue;
+    w.l = K, w.i = de, w.w = function(m, s) {
       return S(m, { locale: s.$L, utc: s.$u, x: s.$x, $offset: s.$offset });
     };
     var ee = function() {
@@ -80,15 +80,15 @@ var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
           var a = d.date, f = d.utc;
           if (a === null)
             return new Date(NaN);
-          if (y.u(a))
+          if (w.u(a))
             return new Date();
           if (a instanceof Date)
             return new Date(a);
           if (typeof a == "string" && !/Z$/i.test(a)) {
             var h = a.match(H);
             if (h) {
-              var w = h[2] - 1 || 0, M = (h[7] || "0").substring(0, 3);
-              return f ? new Date(Date.UTC(h[1], w, h[3] || 1, h[4] || 0, h[5] || 0, h[6] || 0, M)) : new Date(h[1], w, h[3] || 1, h[4] || 0, h[5] || 0, h[6] || 0, M);
+              var y = h[2] - 1 || 0, M = (h[7] || "0").substring(0, 3);
+              return f ? new Date(Date.UTC(h[1], y, h[3] || 1, h[4] || 0, h[5] || 0, h[6] || 0, M)) : new Date(h[1], y, h[3] || 1, h[4] || 0, h[5] || 0, h[6] || 0, M);
             }
           }
           return new Date(a);
@@ -97,7 +97,7 @@ var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         var n = this.$d;
         this.$y = n.getFullYear(), this.$M = n.getMonth(), this.$D = n.getDate(), this.$W = n.getDay(), this.$H = n.getHours(), this.$m = n.getMinutes(), this.$s = n.getSeconds(), this.$ms = n.getMilliseconds();
       }, s.$utils = function() {
-        return y;
+        return w;
       }, s.isValid = function() {
         return this.$d.toString() !== F;
       }, s.isSame = function(n, d) {
@@ -108,26 +108,26 @@ var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       }, s.isBefore = function(n, d) {
         return this.endOf(d) < S(n);
       }, s.$g = function(n, d, a) {
-        return y.u(n) ? this[d] : this.set(a, n);
+        return w.u(n) ? this[d] : this.set(a, n);
       }, s.unix = function() {
         return Math.floor(this.valueOf() / 1e3);
       }, s.valueOf = function() {
         return this.$d.getTime();
       }, s.startOf = function(n, d) {
-        var a = this, f = !!y.u(d) || d, h = y.p(n), w = function(U, C) {
-          var I = y.w(a.$u ? Date.UTC(a.$y, C, U) : new Date(a.$y, C, U), a);
+        var a = this, f = !!w.u(d) || d, h = w.p(n), y = function(U, C) {
+          var I = w.w(a.$u ? Date.UTC(a.$y, C, U) : new Date(a.$y, C, U), a);
           return f ? I : I.endOf(x);
         }, M = function(U, C) {
-          return y.w(a.toDate()[U].apply(a.toDate("s"), (f ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(C)), a);
+          return w.w(a.toDate()[U].apply(a.toDate("s"), (f ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(C)), a);
         }, g = this.$W, b = this.$M, A = this.$D, L = "set" + (this.$u ? "UTC" : "");
         switch (h) {
           case O:
-            return f ? w(1, 0) : w(31, 11);
+            return f ? y(1, 0) : y(31, 11);
           case o:
-            return f ? w(1, b) : w(0, b + 1);
+            return f ? y(1, b) : y(0, b + 1);
           case V:
             var X = this.$locale().weekStart || 0, Z = (g < X ? g + 7 : g) - X;
-            return w(f ? A - Z : A + (6 - Z), b);
+            return y(f ? A - Z : A + (6 - Z), b);
           case x:
           case B:
             return M(L + "Hours", 0);
@@ -143,56 +143,56 @@ var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       }, s.endOf = function(n) {
         return this.startOf(n, !1);
       }, s.$set = function(n, d) {
-        var a, f = y.p(n), h = "set" + (this.$u ? "UTC" : ""), w = (a = {}, a[x] = h + "Date", a[B] = h + "Date", a[o] = h + "Month", a[O] = h + "FullYear", a[D] = h + "Hours", a[u] = h + "Minutes", a[r] = h + "Seconds", a[p] = h + "Milliseconds", a)[f], M = f === x ? this.$D + (d - this.$W) : d;
+        var a, f = w.p(n), h = "set" + (this.$u ? "UTC" : ""), y = (a = {}, a[x] = h + "Date", a[B] = h + "Date", a[o] = h + "Month", a[O] = h + "FullYear", a[D] = h + "Hours", a[u] = h + "Minutes", a[r] = h + "Seconds", a[p] = h + "Milliseconds", a)[f], M = f === x ? this.$D + (d - this.$W) : d;
         if (f === o || f === O) {
           var g = this.clone().set(B, 1);
-          g.$d[w](M), g.init(), this.$d = g.set(B, Math.min(this.$D, g.daysInMonth())).$d;
+          g.$d[y](M), g.init(), this.$d = g.set(B, Math.min(this.$D, g.daysInMonth())).$d;
         } else
-          w && this.$d[w](M);
+          y && this.$d[y](M);
         return this.init(), this;
       }, s.set = function(n, d) {
         return this.clone().$set(n, d);
       }, s.get = function(n) {
-        return this[y.p(n)]();
+        return this[w.p(n)]();
       }, s.add = function(n, d) {
         var a, f = this;
         n = Number(n);
-        var h = y.p(d), w = function(b) {
+        var h = w.p(d), y = function(b) {
           var A = S(f);
-          return y.w(A.date(A.date() + Math.round(b * n)), f);
+          return w.w(A.date(A.date() + Math.round(b * n)), f);
         };
         if (h === o)
           return this.set(o, this.$M + n);
         if (h === O)
           return this.set(O, this.$y + n);
         if (h === x)
-          return w(1);
+          return y(1);
         if (h === V)
-          return w(7);
+          return y(7);
         var M = (a = {}, a[u] = e, a[D] = c, a[r] = l, a)[h] || 1, g = this.$d.getTime() + n * M;
-        return y.w(g, this);
+        return w.w(g, this);
       }, s.subtract = function(n, d) {
         return this.add(-1 * n, d);
       }, s.format = function(n) {
         var d = this, a = this.$locale();
         if (!this.isValid())
           return a.invalidDate || F;
-        var f = n || "YYYY-MM-DDTHH:mm:ssZ", h = y.z(this), w = this.$H, M = this.$m, g = this.$M, b = a.weekdays, A = a.months, L = function(C, I, he, te) {
+        var f = n || "YYYY-MM-DDTHH:mm:ssZ", h = w.z(this), y = this.$H, M = this.$m, g = this.$M, b = a.weekdays, A = a.months, L = function(C, I, he, te) {
           return C && (C[I] || C(d, f)) || he[I].slice(0, te);
         }, X = function(C) {
-          return y.s(w % 12 || 12, C, "0");
+          return w.s(y % 12 || 12, C, "0");
         }, Z = a.meridiem || function(C, I, he) {
           var te = C < 12 ? "AM" : "PM";
           return he ? te.toLowerCase() : te;
-        }, U = { YY: String(this.$y).slice(-2), YYYY: this.$y, M: g + 1, MM: y.s(g + 1, 2, "0"), MMM: L(a.monthsShort, g, A, 3), MMMM: L(A, g), D: this.$D, DD: y.s(this.$D, 2, "0"), d: String(this.$W), dd: L(a.weekdaysMin, this.$W, b, 2), ddd: L(a.weekdaysShort, this.$W, b, 3), dddd: b[this.$W], H: String(w), HH: y.s(w, 2, "0"), h: X(1), hh: X(2), a: Z(w, M, !0), A: Z(w, M, !1), m: String(M), mm: y.s(M, 2, "0"), s: String(this.$s), ss: y.s(this.$s, 2, "0"), SSS: y.s(this.$ms, 3, "0"), Z: h };
+        }, U = { YY: String(this.$y).slice(-2), YYYY: this.$y, M: g + 1, MM: w.s(g + 1, 2, "0"), MMM: L(a.monthsShort, g, A, 3), MMMM: L(A, g), D: this.$D, DD: w.s(this.$D, 2, "0"), d: String(this.$W), dd: L(a.weekdaysMin, this.$W, b, 2), ddd: L(a.weekdaysShort, this.$W, b, 3), dddd: b[this.$W], H: String(y), HH: w.s(y, 2, "0"), h: X(1), hh: X(2), a: Z(y, M, !0), A: Z(y, M, !1), m: String(M), mm: w.s(M, 2, "0"), s: String(this.$s), ss: w.s(this.$s, 2, "0"), SSS: w.s(this.$ms, 3, "0"), Z: h };
         return f.replace(le, function(C, I) {
           return I || U[C] || h.replace(":", "");
         });
       }, s.utcOffset = function() {
         return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
       }, s.diff = function(n, d, a) {
-        var f, h = y.p(d), w = S(n), M = (w.utcOffset() - this.utcOffset()) * e, g = this - w, b = y.m(this, w);
-        return b = (f = {}, f[O] = b / 12, f[o] = b, f[v] = b / 3, f[V] = (g - M) / 6048e5, f[x] = (g - M) / 864e5, f[D] = g / c, f[u] = g / e, f[r] = g / l, f)[h] || g, a ? b : y.a(b);
+        var f, h = w.p(d), y = S(n), M = (y.utcOffset() - this.utcOffset()) * e, g = this - y, b = w.m(this, y);
+        return b = (f = {}, f[O] = b / 12, f[o] = b, f[v] = b / 3, f[V] = (g - M) / 6048e5, f[x] = (g - M) / 864e5, f[D] = g / c, f[u] = g / e, f[r] = g / l, f)[h] || g, a ? b : w.a(b);
       }, s.daysInMonth = function() {
         return this.endOf(o).$D;
       }, s.$locale = function() {
@@ -203,7 +203,7 @@ var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         var a = this.clone(), f = K(n, d, !0);
         return f && (a.$L = f), a;
       }, s.clone = function() {
-        return y.w(this.$d, this);
+        return w.w(this.$d, this);
       }, s.toDate = function() {
         return new Date(this.valueOf());
       }, s.toJSON = function() {
@@ -224,9 +224,9 @@ var oe = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       return S(1e3 * m);
     }, S.en = R[j], S.Ls = R, S.p = {}, S;
   });
-})(we);
-const Y = we.exports;
-var ye = { exports: {} };
+})(ye);
+const Y = ye.exports;
+var we = { exports: {} };
 (function(i, t) {
   (function(l, e) {
     i.exports = e();
@@ -302,8 +302,8 @@ var ye = { exports: {} };
       };
     };
   });
-})(ye);
-const Te = ye.exports;
+})(we);
+const Te = we.exports;
 var De = { exports: {} };
 (function(i, t) {
   (function(l, e) {
@@ -365,6 +365,7 @@ function Fe(i, t, l, e, c, p) {
   return k(), $("div", We, [
     _("div", ze, [
       (k(!0), $(P, null, q(e.years, (r) => (k(), $("button", {
+        type: "button",
         class: "w-full hover:bg-attic-thirdly rounded-xl py-3 hover:text-white",
         onClick: (u) => e.selectYear(r)
       }, E(r), 9, Ne))), 256))
@@ -388,6 +389,7 @@ function Pe(i, t, l, e, c, p) {
   return k(), $("div", Je, [
     _("div", Xe, [
       (k(), $(P, null, q(12, (r) => _("button", {
+        type: "button",
         class: "rounded-xl py-3 hover:bg-attic-thirdly hover:text-white px-2",
         onClick: (u) => e.selectMonth(r - 1)
       }, E(e.dayjs().month(r - 1).format("MMMM")), 9, Ze)), 64))
@@ -655,10 +657,10 @@ const ft = {
       dayjs: Y
     };
   }
-}, mt = { class: "md:space-y-2" }, vt = { key: 0 }, pt = { key: 1 }, wt = {
+}, mt = { class: "md:space-y-2" }, vt = { key: 0 }, pt = { key: 1 }, yt = {
   key: 2,
   class: "text-gray-400"
-}, yt = {
+}, wt = {
   key: 0,
   class: "attic-datepicker-calendar place-left md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8"
 }, Dt = { class: "md:flex md:items-start md:space-x-3 md:space-y-0 space-y-8" };
@@ -671,7 +673,7 @@ function gt(i, t, l, e, c, p) {
       clear: e.clearDate
     }, () => [
       _("div", Oe({ class: "relative block w-full pl-3 pr-12 py-3 rounded-lg overflow-hidden text-sm transition-colors bg-white border focus:ring focus:outline-none shadow" }, i.$attrs), [
-        !l.isRange && e.atticDatepicker.selectedDate.value ? (k(), $("span", vt, E(e.atticDatepicker.modelValue.value), 1)) : l.isRange && e.atticDatepicker.modelValue.value && e.atticDatepicker.modelValue.value.length > 1 ? (k(), $("span", pt, E(e.atticDatepicker.modelValue.value[0]) + " ~ " + E(e.atticDatepicker.modelValue.value[1]), 1)) : (k(), $("span", wt, E(i.$attrs.placeholder ?? "Select Date"), 1))
+        !l.isRange && e.atticDatepicker.selectedDate.value ? (k(), $("span", vt, E(e.atticDatepicker.modelValue.value), 1)) : l.isRange && e.atticDatepicker.modelValue.value && e.atticDatepicker.modelValue.value.length > 1 ? (k(), $("span", pt, E(e.atticDatepicker.modelValue.value[0]) + " ~ " + E(e.atticDatepicker.modelValue.value[1]), 1)) : (k(), $("span", yt, E(i.$attrs.placeholder ?? "Select Date"), 1))
       ], 16)
     ]),
     se(Ye, {
@@ -683,13 +685,14 @@ function gt(i, t, l, e, c, p) {
       "leave-to-class": "opacity-0 translate-y-3"
     }, {
       default: Ee(() => [
-        e.showCalendar ? (k(), $("div", yt, [
+        e.showCalendar ? (k(), $("div", wt, [
           _("div", Dt, [
             (k(!0), $(P, null, q(parseInt(l.showXMonths ?? 1), (D) => (k(), Be(r, {
               date: e.calendarView.date.value.add(D - 1, "month")
             }, null, 8, ["date"]))), 256))
           ]),
           _("button", {
+            type: "button",
             class: "sm:hidden w-full bg-red-500 rounded text-white font-bold p-3",
             onClick: t[0] || (t[0] = (D) => e.showCalendar = !1)
           }, " Close ")

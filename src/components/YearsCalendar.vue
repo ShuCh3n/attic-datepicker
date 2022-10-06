@@ -1,7 +1,7 @@
 <template>
     <div class="flex-1">
         <div class="max-h-72 max-w-sm overflow-y-auto space-y-5 font-bold text-sm">
-            <button v-for="year in years" class="w-full hover:bg-attic-thirdly rounded-xl py-3 hover:text-white" @click="selectYear(year)">{{ year }}</button>
+            <button type="button" v-for="year in years" class="w-full hover:bg-attic-thirdly rounded-xl py-3 hover:text-white" @click="selectYear(year)">{{ year }}</button>
         </div>
     </div>
 </template>
