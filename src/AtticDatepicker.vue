@@ -113,7 +113,10 @@ export default {
         })
 
         const clearDate = () => {
+            atticDatepicker.modelValue.value = (props.isRange)? [] : null
             atticDatepicker.selectedDate.value = null
+            atticDatepicker.selectedEndDate.value = null
+
             showCalendar.value = false
         }
 

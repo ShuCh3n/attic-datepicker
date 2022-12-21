@@ -271,12 +271,16 @@
                 <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">
                     <div class="w-full max-w-md">
                         <attic-datepicker v-slot="{ value, placeholder, clear }" placeholder="Select Date">
-                            <div class="shadow-xl border-2 border-blue-600 rounded-full p-3 px-5 font-bold flex items-center justify-between">
-                                <div>
-                                    {{ value || placeholder }}
+                            <div class="space-y-5">
+                                <div class="shadow-xl border-2 border-blue-600 rounded-full p-3 px-5 font-bold flex items-center justify-between">
+                                    <div>
+                                        {{ value || placeholder }}
+                                    </div>
+
+                                    <img src="/images/calendar-silhouette.svg" class="w-5" />
                                 </div>
 
-                                <img src="/images/calendar-silhouette.svg" class="w-5" />
+                                <button v-if="value" @click="clear" class="px-3 py-2 rounded bg-attic-primary border-b-2 border-purple-900 hover:bg-purple-700 font-bold text-white">Clear</button>
                             </div>
                         </attic-datepicker>
                     </div>

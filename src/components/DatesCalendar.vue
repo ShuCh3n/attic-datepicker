@@ -37,8 +37,6 @@
                              ]">{{ day.format('DD') }}</span>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
