@@ -93,6 +93,26 @@ export default {
             }
         }
     },
+    watch: {
+        disableDatesBefore(value) {
+            this.atticDatepicker.setDisableDatesBefore(value)
+        },
+        disableDatesAfter(value) {
+            this.atticDatepicker.setDisableDatesAfter(value)
+        },
+        disableDates(value) {
+            this.atticDatepicker.setDisableDates(value)
+        },
+        enableDatesBefore(value) {
+            this.atticDatepicker.setEnableDatesBefore(value)
+        },
+        enableDatesAfter(value) {
+            this.atticDatepicker.setEnableDatesAfter(value)
+        },
+        enableDates(value) {
+            this.atticDatepicker.setEnableDates(value)
+        }
+    },
     setup(props, { emit }) {
         const showCalendar = ref(false)
         const atticDatepicker = new Datepicker(props.modelValue, props.format, (props.isRange || props.isRange === 'true'), (typeof props.keepOpen === 'string')? !(props.keepOpen === 'false') : props.keepOpen)

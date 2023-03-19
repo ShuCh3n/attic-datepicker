@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="w-full">
         <YearsCalendar v-show="displayView === 'years'" @changeView="changeView" />
         <MonthsCalendar v-show="displayView === 'months'" @changeView="changeView" />
         <DatesCalendar v-show="displayView === 'dates'" @changeView="changeView" />
