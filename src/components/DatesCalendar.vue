@@ -33,7 +33,8 @@
 
                             <span class="z-10 block relative text-center align-middle hover:rounded-full block w-12 h-12 text-center align-middle flex items-center justify-center" v-bind:class="[
                                  { 'bg-attic-primary text-white rounded-full': isSelectedDay(day) },
-                                 { 'hover:bg-gray-200': !isSelectedDay(day) }
+                                 { 'hover:bg-gray-200': !isSelectedDay(day) },
+                                 { 'cursor-not-allowed text-gray-200': atticDatepicker.isDisabledDate(day) }
                              ]">{{ day.format('DD') }}</span>
                         </div>
                     </div>
@@ -84,8 +85,10 @@ export default {
         }
 
         const selectDate = (day) => {
-            atticDatepicker.selectDate(day)
-            showCalendar.value = !atticDatepicker.ableToClose()
+            if(!atticDatepicker.isDisabledDate(day)) {
+                atticDatepicker.selectDate(day)
+                showCalendar.value = !atticDatepicker.ableToClose()
+            }
         }
 
         return {

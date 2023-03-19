@@ -10,7 +10,7 @@
                 <span v-else-if="isRange && atticDatepicker.modelValue.value &&  atticDatepicker.modelValue.value.length > 1">
                     {{ atticDatepicker.modelValue.value[0] }} ~ {{ atticDatepicker.modelValue.value[1] }}
                 </span>
-                <span v-else class="text-gray-400">{{ $attrs.placeholder ?? 'Select Date' }}</span>
+                <span v-else class="text-gray-400 select-none">{{ $attrs.placeholder ?? 'Select Date' }}</span>
             </div>
         </slot>
 
@@ -21,7 +21,7 @@
                     leave-from-class="opacity-100 translate-y-0"
                     leave-to-class="opacity-0 translate-y-3">
 
-            <div v-if="showCalendar" :class="calendarClass ?? 'attic-datepicker-calendar place-left md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8'">
+            <div v-if="showCalendar" :class="calendarClass ?? 'attic-datepicker-calendar place-left md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8 select-none'">
                 <div class="md:flex md:items-start md:space-x-3 md:space-y-0 space-y-8">
                     <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
                 </div>
@@ -69,7 +69,13 @@ export default {
         showXMonths: Number,
         isRange: Boolean,
         keepOpen: Boolean,
-        calendarClass: String
+        calendarClass: String,
+        disableDatesBefore: String|dayjs.Dayjs|null,
+        disableDatesAfter: String|dayjs.Dayjs|null,
+        disableDates: Array|null,
+        enableDatesBefore: String|dayjs.Dayjs|null,
+        enableDatesAfter: String|dayjs.Dayjs|null,
+        enableDates: Array|null
     },
     components: {
         Calendar,
@@ -90,6 +96,30 @@ export default {
     setup(props, { emit }) {
         const showCalendar = ref(false)
         const atticDatepicker = new Datepicker(props.modelValue, props.format, (props.isRange || props.isRange === 'true'), (typeof props.keepOpen === 'string')? !(props.keepOpen === 'false') : props.keepOpen)
+
+        if(props.disableDatesBefore) {
+            atticDatepicker.setDisableDatesBefore(props.disableDatesBefore)
+        }
+
+        if(props.disableDatesAfter) {
+            atticDatepicker.setDisableDatesAfter(props.disableDatesAfter)
+        }
+
+        if(props.disableDates) {
+            atticDatepicker.setDisableDates(props.disableDates)
+        }
+
+        if(props.enableDatesBefore) {
+            atticDatepicker.setEnableDatesBefore(props.enableDatesBefore)
+        }
+
+        if(props.enableDatesAfter) {
+            atticDatepicker.setEnableDatesAfter(props.enableDatesAfter)
+        }
+
+        if(props.enableDates) {
+            atticDatepicker.setEnableDates(props.enableDates)
+        }
 
         const calendarView = computed(() => {
             const date = ref(atticDatepicker.selectedDate.value ?? dayjs())

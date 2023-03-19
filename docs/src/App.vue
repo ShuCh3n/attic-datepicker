@@ -237,11 +237,46 @@
             <div class="space-y-3">
                 <h3 class="font-bold text-xl">Disable Dates</h3>
 
-                <p>Currently, it is not possible to use disabling dates functionality. I'm still thinking which is the best way to implement this functionality. I want users to be able to disable individual dates and/or ranges. This function will be the top priority in the next update.</p>
+                <p>There are multiple ways to disable dates.</p>
 
-                <div class="bg-orange-400 rounded p-3 text-white space-x-3 border border-orange-500">
-                    <img src="/images/horn.svg" class="w-6 inline" />
-                    <span class="font-bold">Coming in the next update...</span>
+                <div class="flex space-x-8">
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-sm">Disable all dates a week before</h4>
+                        <attic-datepicker :disableDatesBefore="dayjs().subtract(1, 'week')"></attic-datepicker>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-sm">Disable all dates a week after</h4>
+                        <attic-datepicker :disableDatesAfter="dayjs().add(1, 'week')"></attic-datepicker>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-sm">Disable specific dates ({{ dayjs().add(8, 'days').format('DD MMM YYYY') }}, {{ dayjs().add(25, 'days').format('DD MMM YYYY') }} - {{ dayjs().add(30, 'days').format('DD MMM YYYY') }})</h4>
+                        <attic-datepicker :disableDates="[dayjs().add(8, 'days'), [dayjs().add(25, 'days').format('DD MMM YYYY'), dayjs().add(30, 'days').format('DD MMM YYYY')]]"></attic-datepicker>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <h3 class="font-bold text-xl">Enable Dates</h3>
+
+                <p>There are multiple ways to enable dates.</p>
+
+                <div class="flex space-x-8">
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-sm">Enable all dates a week before</h4>
+                        <attic-datepicker :enableDatesBefore="dayjs().subtract(1, 'week')"></attic-datepicker>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-sm">Enable all dates a week after</h4>
+                        <attic-datepicker :enableDatesAfter="dayjs().add(1, 'week')"></attic-datepicker>
+                    </div>
+
+                    <div class="space-y-2">
+                        <h4 class="font-bold text-sm">Enable specific dates ({{ dayjs().add(8, 'days').format('DD MMM YYYY') }}, {{ dayjs().add(25, 'days').format('DD MMM YYYY') }} - {{ dayjs().add(30, 'days').format('DD MMM YYYY') }})</h4>
+                        <attic-datepicker :enableDates="[dayjs().add(8, 'days'), [dayjs().add(25, 'days').format('DD MMM YYYY'), dayjs().add(30, 'days').format('DD MMM YYYY')]]"></attic-datepicker>
+                    </div>
                 </div>
             </div>
 
@@ -299,6 +334,7 @@
 <script>
 import { ref } from 'vue'
 import codeExamples from './codeExamples';
+import dayjs from 'dayjs'
 
 import AtticDatepicker from "attic-datepicker";
 import VPrims from './prims'
@@ -318,6 +354,7 @@ export default {
             startFrom,
             codeExamples: codeExamples(),
             playground: codeExamples().playground,
+            dayjs
         }
     }
 }
