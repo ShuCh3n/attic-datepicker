@@ -12,7 +12,7 @@ const baseConfig: UserConfig = {
         alias: {
             'attic-datepicker': resolve(__dirname, './src/main.ts'),
         },
-    },
+    }
 };
 
 const esConfig: UserConfig = {

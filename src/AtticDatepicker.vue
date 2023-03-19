@@ -21,7 +21,7 @@
                     leave-from-class="opacity-100 translate-y-0"
                     leave-to-class="opacity-0 translate-y-3">
 
-            <div v-if="showCalendar" class="attic-datepicker-calendar place-left md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8">
+            <div v-if="showCalendar" :class="calendarClass ?? 'attic-datepicker-calendar place-left md:absolute fixed bg-white md:rounded-[28px] border py-5 px-6 md:shadow-xl z-[99] md:top-auto md:right-auto md:h-auto md:w-auto md:space-y-0 top-0 right-0 h-full w-full space-y-8'">
                 <div class="md:flex md:items-start md:space-x-3 md:space-y-0 space-y-8">
                     <Calendar v-for="x in parseInt(showXMonths ?? 1)" :date="calendarView.date.value.add((x - 1), 'month')" />
                 </div>
@@ -68,7 +68,8 @@ export default {
         },
         showXMonths: Number,
         isRange: Boolean,
-        keepOpen: Boolean
+        keepOpen: Boolean,
+        calendarClass: String
     },
     components: {
         Calendar,

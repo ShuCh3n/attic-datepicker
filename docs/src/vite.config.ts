@@ -22,6 +22,10 @@ export default defineConfig(({ command }) => {
         build: {
             outDir: resolve(__dirname, '../public'),
             emptyOutDir: resolve(__dirname, '../public')
+        },
+        server: {
+            host: true,
+            port: 5173
         }
     }
 });
