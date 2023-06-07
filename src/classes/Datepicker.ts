@@ -14,6 +14,9 @@ export default class Datepicker{
     enableDatesBefore: dayjs.Dayjs|null
     enableDatesAfter: dayjs.Dayjs|null
     enableDates: Array<dayjs.Dayjs|Array<dayjs.Dayjs>>|null
+    startYear: number
+    endYear: number
+
     constructor(date: any, format: string, isRange: boolean, keepOpen: boolean) {
         this.modelValue = ref(null)
 
@@ -31,6 +34,9 @@ export default class Datepicker{
         this.enableDatesBefore = null
         this.enableDatesAfter = null
         this.enableDates = null
+
+        this.startYear = parseInt(dayjs().subtract(100, 'years').format("YYYY"))
+        this.endYear = parseInt(dayjs().add(5, 'years').format("YYYY"))
 
         watch(() => this.selectedDate.value, (value, prevValue) => {
             this.getValue()
@@ -247,6 +253,14 @@ export default class Datepicker{
 
             return date
         })
+    }
+
+    public setStartYear(startYear: number) {
+        this.startYear = startYear
+    }
+
+    public setEndYear(endYear: number) {
+        this.endYear = endYear
     }
 
 }

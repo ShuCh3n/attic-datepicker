@@ -281,6 +281,16 @@
             </div>
 
             <div class="space-y-3">
+                <h3 class="font-bold text-xl">Set start and from year</h3>
+
+                <p>Able to show specific year range</p>
+
+                <div class="space-y-2">
+                    <attic-datepicker startYear="1900" endYear="2030"></attic-datepicker>
+                </div>
+            </div>
+
+            <div class="space-y-3">
                 <h3 class="font-bold text-xl">Trigger</h3>
 
                 <div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-y-8 sm:gap-y-12 lg:gap-y-0 lg:gap-x-8">

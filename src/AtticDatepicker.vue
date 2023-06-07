@@ -75,7 +75,9 @@ export default {
         disableDates: Array|null,
         enableDatesBefore: String|dayjs.Dayjs|null,
         enableDatesAfter: String|dayjs.Dayjs|null,
-        enableDates: Array|null
+        enableDates: Array|null,
+        startYear: Number,
+        endYear: Number,
     },
     components: {
         Calendar,
@@ -139,6 +141,14 @@ export default {
 
         if(props.enableDates) {
             atticDatepicker.setEnableDates(props.enableDates)
+        }
+
+        if(props.startYear) {
+            atticDatepicker.setStartYear(parseInt(props.startYear))
+        }
+
+        if(props.endYear) {
+            atticDatepicker.setEndYear(parseInt(props.endYear))
         }
 
         const calendarView = computed(() => {
